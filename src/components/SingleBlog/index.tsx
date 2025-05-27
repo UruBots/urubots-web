@@ -14,7 +14,7 @@ export const SingleBlog = ({ blog }:any) => {
         data-wow-delay='.1s'
       >
         <Link href={`/${lang}/blog/${blog.uid}`} className='relative block h-[220px] w-full'>
-          <PrismicImage field={image}/>
+          <PrismicImage field={image} className="w-full h-[220px]"/>
         </Link>
         <div className='p-6 sm:p-8 md:py-8 md:px-6 lg:p-8 xl:py-8 xl:px-5 2xl:p-8'>
           <h3>
