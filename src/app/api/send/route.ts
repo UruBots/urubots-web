@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
         const { name, email, message } = await request.json();
         const { data, error } = await resend.emails.send({
             from: 'admin urubot <admin@urubots.uy>',
-            to: ['urubots.itrn@utec.edu.uy'],
+            to: ['urubots.itrn@gmail.com'],
             subject: 'Nuevo Mensaje desde UruBots.uy',
             react: EmailTemplate({ name, email, message }),
         });
