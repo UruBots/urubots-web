@@ -39,7 +39,7 @@ export const BlogSection = ({slice}: any) => {
                                 <Link href={`/${lang}/blog/${post.uid}`}>
                                     <div
                                         className="group relative overflow-hidden rounded-sm bg-white shadow-one duration-300 hover:shadow-two dark:bg-gray-900 dark:hover:shadow-gray-dark">
-                                        <div className="relative block aspect-[37/22] w-full overflow-hidden">
+                                        <div className="relative block aspect-[37/22] w-full overflow-hidden h-[220px]">
                                             <PrismicImage field={post.data.image} />
                                         </div>
                                         <div className="p-6 sm:p-8 md:px-6 md:py-8 lg:p-8 xl:px-5 xl:py-8 2xl:p-8">
