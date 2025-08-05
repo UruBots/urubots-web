@@ -1,4 +1,5 @@
 import {PrismicImage, PrismicRichText} from "@prismicio/react";
+import Image from "next/image";
 
 export const BlogItem = ({slice}:any) => {
     if(!slice) return null;
@@ -24,7 +25,29 @@ export const BlogItem = ({slice}:any) => {
                                 </div>
                             </div>
                             <div className="blog-details mb-12 text-black dark:text-neutral-100 text-lg">
-                                <PrismicRichText field={slice.content}/>
+                                <PrismicRichText field={slice.content} components={{
+                                    paragraph: ({ children }) => (
+                                        <p className="leading-relaxed mb-4">{children}</p>
+                                    ),
+                                    image: ({ node }) => {
+                                        const { url, alt, dimensions } = node;
+
+                                        if (!url || !dimensions) return null;
+
+                                        return (
+                                            <div className="flex justify-center my-4">
+                                                <img
+                                                    src={url}
+                                                    alt={alt || ''}
+                                                    width={dimensions.width}
+                                                    height={dimensions.height}
+                                                    className="rounded"
+                                                    style={{ maxWidth: '100%', height: 'auto' }}
+                                                />
+                                            </div>
+                                        );
+                                    },
+                                }}/>
                             </div>
                             {/*<div className="items-center justify-between sm:flex">*/}
                             {/*    <div className="mb-5"><h5*/}
