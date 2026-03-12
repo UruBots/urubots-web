@@ -1,0 +1,50 @@
+{
+  "id": "donations_content",
+  "type": "SharedSlice",
+  "name": "DonationsContent",
+  "description": "DonationsContent",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": "How to Help"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "Describe how people can help",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "contact_link_text": {
+          "type": "Text",
+          "config": {
+            "label": "Contact Link Text",
+            "placeholder": "Contact Us"
+          }
+        },
+        "contact_link": {
+          "type": "Link",
+          "config": {
+            "label": "Contact Link",
+            "placeholder": "Link to contact page",
+            "select": null
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

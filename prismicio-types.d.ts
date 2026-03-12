@@ -573,6 +573,84 @@ interface MenuDocumentData {}
 export type MenuDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
 
+type ResearchDocumentDataSlicesSlice =
+  | InternalHeroSlice
+  | ResearchPublicationsSlice;
+
+/**
+ * Content for research documents
+ */
+interface ResearchDocumentData {
+  /**
+   * Title field in *research*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: research.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField;
+
+  /**
+   * Slice Zone field in *research*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: research.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ResearchDocumentDataSlicesSlice> /**
+   * Meta Description field in *research*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: research.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *research*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: research.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *research*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: research.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * research document from Prismic
+ *
+ * - **API ID**: `research`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ResearchDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ResearchDocumentData>,
+    "research",
+    Lang
+  >;
+
 /**
  * Item in *tabs → mission*
  */
@@ -860,6 +938,7 @@ export type AllDocumentTypes =
   | GalleryDocument
   | HomepageDocument
   | MenuDocument
+  | ResearchDocument
   | TabsDocument
   | TeamDocument
   | UrucupDocument;
@@ -1597,6 +1676,36 @@ export type LandingSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Default variation for ResearchPublications Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ResearchPublicationsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *ResearchPublications*
+ */
+type ResearchPublicationsSliceVariation = ResearchPublicationsSliceDefault;
+
+/**
+ * ResearchPublications Shared Slice
+ *
+ * - **API ID**: `research_publications`
+ * - **Description**: ResearchPublications
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ResearchPublicationsSlice = prismic.SharedSlice<
+  "research_publications",
+  ResearchPublicationsSliceVariation
+>;
+
+/**
  * Primary content in *SectionImageLeft → Default → Primary*
  */
 export interface SectionImageLeftSliceDefaultPrimary {
@@ -1886,6 +1995,9 @@ declare module "@prismicio/client" {
       HomepageDocumentDataSlicesSlice,
       MenuDocument,
       MenuDocumentData,
+      ResearchDocument,
+      ResearchDocumentData,
+      ResearchDocumentDataSlicesSlice,
       TabsDocument,
       TabsDocumentData,
       TabsDocumentDataMissionItem,
@@ -1941,6 +2053,9 @@ declare module "@prismicio/client" {
       LandingSliceDefaultPrimary,
       LandingSliceVariation,
       LandingSliceDefault,
+      ResearchPublicationsSlice,
+      ResearchPublicationsSliceVariation,
+      ResearchPublicationsSliceDefault,
       SectionImageLeftSlice,
       SectionImageLeftSliceDefaultPrimary,
       SectionImageLeftSliceVariation,

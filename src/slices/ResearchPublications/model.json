@@ -1,0 +1,49 @@
+{
+  "id": "research_publications",
+  "type": "SharedSlice",
+  "name": "ResearchPublications",
+  "description": "ResearchPublications",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": "Research Publications"
+          }
+        }
+      },
+      "items": {
+        "publication_title": {
+          "type": "Text",
+          "config": {
+            "label": "Publication Title",
+            "placeholder": "Enter the publication title"
+          }
+        },
+        "year": {
+          "type": "Number",
+          "config": {
+            "label": "Year",
+            "placeholder": "Publication year (e.g., 2025)"
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "Link to arXiv PDF",
+            "select": "web"
+          }
+        }
+      }
+    }
+  ]
+}

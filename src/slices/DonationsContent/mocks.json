@@ -1,0 +1,22 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": "How to Help",
+      "description": [
+        {
+          "type": "paragraph",
+          "text": "Your support helps us advance robotics research and compete internationally.",
+          "spans": []
+        }
+      ],
+      "contact_link_text": "Contact Us",
+      "contact_link": {
+        "link_type": "Web",
+        "url": "/contact"
+      }
+    },
+    "items": []
+  }
+]
