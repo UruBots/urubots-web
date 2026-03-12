@@ -65,7 +65,23 @@ const routes: prismic.ClientConfig['routes'] = [
   {
     type: 'contact',
     path: '/:lang?/:uid',
-  }
+  },
+  {
+    type: 'research',
+    path: '/:lang?',
+  },
+  {
+    type: 'research',
+    path: '/:lang?/:uid',
+  },
+  {
+    type: 'donations',
+    path: '/:lang?',
+  },
+  {
+    type: 'donations',
+    path: '/:lang?/:uid',
+  },
 ];
 
 /**

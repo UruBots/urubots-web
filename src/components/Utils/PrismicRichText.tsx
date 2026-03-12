@@ -42,7 +42,6 @@ export function PrismicRichText({
 }: PrismicRichTextProps) {
   return (
     <BasePrismicRichText
-        field={undefined}
         // @ts-ignore
         components={{...defaultComponents, ...components}}
         {...props}    />
