@@ -1,14 +1,18 @@
-import { FC } from "react";
+import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { ResearchPublications as ResearchPublicationsContent } from "@/components/ResearchPublications";
 
-const ResearchPublications: FC<SliceComponentProps> = ({ slice }) => {
+const ResearchPublications = ({
+  slice,
+}: SliceComponentProps<Content.ResearchPublicationsSlice>) => {
+  const title = slice.primary.title || "Research Publications";
+
   return (
     <section
-      data-slice-type={(slice as any).slice_type}
-      data-slice-variation={(slice as any).variation}
+      data-slice-type={slice.slice_type}
+      data-slice-variation={slice.variation}
     >
-      <ResearchPublicationsContent slice={slice} />
+      <ResearchPublicationsContent title={title} slice={slice} />
     </section>
   );
 };

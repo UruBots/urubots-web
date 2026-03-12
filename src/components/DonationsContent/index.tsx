@@ -1,7 +1,10 @@
-import * as prismic from "@prismicio/client";
-import {PrismicRichText} from "../Utils/PrismicRichText";
+import { Content, asLink } from "@prismicio/client";
+import {PrismicRichText} from "@/components/Utils/PrismicRichText";
+interface Props {
+  slice: Content.DonationsContentSlice;
+}
 
-export const DonationsContent = ({ slice }: any) => {
+export const DonationsContent = ({ slice }: Props) => {
   if (!slice || !slice.primary) {
     return null;
   }
@@ -9,7 +12,7 @@ export const DonationsContent = ({ slice }: any) => {
   const title = slice.primary.title || "How to Help";
   const description = slice.primary.description;
   const contactLinkText = slice.primary.contact_link_text || "Contact Us";
-  const contactUrl = prismic.asLink(slice.primary.contact_link) || "/contact";
+  const contactUrl = asLink(slice.primary.contact_link) || "/contact";
 
   return (
     <section className="pt-20 pb-20 bg-white dark:bg-gray-900">

@@ -15,7 +15,6 @@ export async function generateMetadata(): Promise<Metadata> {
     const page = await client.getByUID("research", "research").catch(() => notFound());
 
     return {
-        // @ts-ignore
         title: asText(page.data.title),
         description: page.data.meta_description,
         openGraph: {
@@ -30,7 +29,6 @@ export default async function Page({params: { lang, uid } }: { params: { lang: s
     const page = await client
         .getByUID('research', 'research', { lang })
         .catch(() => notFound());
-    console.log("#########################", page);
 
     const locales = await getLocales(page, client);
     const navigation = getMenuItems(lang);

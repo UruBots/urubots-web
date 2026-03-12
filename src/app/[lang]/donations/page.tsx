@@ -15,7 +15,6 @@ export async function generateMetadata(): Promise<Metadata> {
     const page = await client.getByUID("donations", "donations").catch(() => notFound());
 
     return {
-        // @ts-ignore
         title: asText(page.data.title),
         description: page.data.meta_description,
         openGraph: {
