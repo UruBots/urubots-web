@@ -9,7 +9,8 @@ interface HeadingProps {
 
 interface PrismicRichTextProps {
   components?: HeadingProps;
-  props: any;
+  field: any;
+  [key: string]: any;
 }
 
 interface DefaultProps {

@@ -26,7 +26,7 @@ export const DonationsContent = ({ slice }: Props) => {
 
         {description && (
           <div className="prose prose-lg dark:prose-invert max-w-none mb-12 text-gray-700 dark:text-gray-300 leading-relaxed">
-            <PrismicRichText field={description}  />
+            <PrismicRichText field={description} />
           </div>
         )}
 
