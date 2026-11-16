@@ -1,4 +1,4 @@
-import type { Publication } from '@/data/publications';
+import type { Publication } from '@/lib/publications';
 
 export type PublicationFilter = 'all' | 'paper' | 'tdp';
 

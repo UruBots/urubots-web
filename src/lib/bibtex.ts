@@ -1,4 +1,4 @@
-import type { Publication } from '@/data/publications';
+import type { Publication } from '@/lib/publications';
 
 const ACCENTS: Record<string, string> = {
   á: "{\\'a}", é: "{\\'e}", í: "{\\'i}", ó: "{\\'o}", ú: "{\\'u}",

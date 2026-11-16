@@ -1,20 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import { publications, type Publication } from '@/data/publications';
+import type { Publication } from '@/lib/publications';
 import { toBibtex } from '@/lib/bibtex';
 import { groupPublications, type PublicationFilter } from '@/lib/groupPublications';
 
-const labels: Record<string, { title: string; all: string; paper: string; tdp: string; copy: string; copied: string; accepted: string; preprint: string }> = {
-  'en-us': { title: 'Publications & TDPs', all: 'All', paper: 'Scientific papers', tdp: 'TDPs', copy: 'Copy BibTeX', copied: 'Copied!', accepted: 'Accepted', preprint: 'Preprint' },
-  'es-ar': { title: 'Publicaciones y TDPs', all: 'Todos', paper: 'Artículos científicos', tdp: 'TDPs', copy: 'Copiar BibTeX', copied: '¡Copiado!', accepted: 'Aceptado', preprint: 'Preprint' },
-  'pt-br': { title: 'Publicações e TDPs', all: 'Todos', paper: 'Artigos científicos', tdp: 'TDPs', copy: 'Copiar BibTeX', copied: 'Copiado!', accepted: 'Aceito', preprint: 'Preprint' },
-};
+export interface PublicationsLabels {
+  all: string;
+  paper: string;
+  tdp: string;
+  copy: string;
+  copied: string;
+  accepted: string;
+  preprint: string;
+}
 
 const linkClass =
   'rounded border border-blue-300 px-3 py-1 text-sm text-blue-800 transition-colors hover:bg-blue-800 hover:text-white dark:border-blue-700 dark:text-blue-300 dark:hover:bg-blue-600 dark:hover:text-white';
 
-function Card({ pub, t }: { pub: Publication; t: (typeof labels)['en-us'] }) {
+function Card({ pub, t }: { pub: Publication; t: PublicationsLabels }) {
   const [copied, setCopied] = useState(false);
   const copy = async () => {
     try {
@@ -58,8 +62,15 @@ function Card({ pub, t }: { pub: Publication; t: (typeof labels)['en-us'] }) {
   );
 }
 
-export function PublicationsList({ lang, title }: { lang: string; title?: string | null }) {
-  const t = labels[lang] ?? labels['en-us'];
+export function PublicationsList({
+  publications,
+  title,
+  labels: t,
+}: {
+  publications: Publication[];
+  title: string | null;
+  labels: PublicationsLabels;
+}) {
   const [filter, setFilter] = useState<PublicationFilter>('all');
   const groups = groupPublications(publications, filter);
   const tabs: PublicationFilter[] = ['all', 'paper', 'tdp'];
@@ -69,7 +80,7 @@ export function PublicationsList({ lang, title }: { lang: string; title?: string
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="mb-12">
           <h2 className="mb-4 text-3xl font-bold text-black dark:text-white sm:text-4xl md:text-[45px]">
-            {title || t.title}
+            {title}
           </h2>
           <div className="h-1 w-20 rounded bg-blue-900 dark:bg-blue-500" />
         </div>

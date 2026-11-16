@@ -1,23 +1,4 @@
-export type PublicationKind = 'paper' | 'tdp';
-
-export interface Publication {
-  /** Unique slug, e.g. "arxiv-2411.05011" or "doi-10.1007-978-981-95-2379-5_7". */
-  id: string;
-  kind: PublicationKind;
-  year: number;
-  title: string;
-  authors: string[];
-  /** null when the venue is not confirmed yet. */
-  venue: string | null;
-  status: 'published' | 'accepted' | 'preprint';
-  summary: string;
-  /** arXiv identifier, e.g. "2411.05011". */
-  arxiv: string | null;
-  /** Full DOI URL, only when verified. */
-  doi: string | null;
-  pdf: string | null;
-  bibtexKey: string | null;
-}
+import type { Publication } from '../../src/lib/publications';
 
 type Source = Omit<Publication, 'id' | 'pdf'> & { pdf?: string | null };
 
@@ -236,4 +217,4 @@ const sources: Source[] = [
 ];
 
 /** Newest first; stable within a year. */
-export const publications: Publication[] = sources.map(build).sort((a, b) => b.year - a.year);
+export const seedPublications: Publication[] = sources.map(build).sort((a, b) => b.year - a.year);

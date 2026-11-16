@@ -654,6 +654,145 @@ interface MenuDocumentData {}
  */
 export type MenuDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
 
+/**
+ * Content for Publication documents
+ */
+interface PublicationDocumentData {
+	/**
+	 * Kind field in *Publication*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: paper
+	 * - **API ID Path**: publication.kind
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	kind: prismic.SelectField<"paper" | "tdp", "filled">;
+	
+	/**
+	 * Year field in *Publication*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: publication.year
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	year: prismic.NumberField;
+	
+	/**
+	 * Authors (separated by ;) field in *Publication*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: publication.authors
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	authors: prismic.KeyTextField;
+	
+	/**
+	 * Venue field in *Publication*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: publication.venue
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	venue: prismic.KeyTextField;
+	
+	/**
+	 * Status field in *Publication*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: preprint
+	 * - **API ID Path**: publication.status
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	status: prismic.SelectField<"published" | "accepted" | "preprint", "filled">;
+	
+	/**
+	 * Summary (one line) field in *Publication*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: publication.summary
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	summary: prismic.KeyTextField;
+	
+	/**
+	 * arXiv ID field in *Publication*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: publication.arxiv
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	arxiv: prismic.KeyTextField;
+	
+	/**
+	 * DOI link field in *Publication*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: publication.doi
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	doi: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * PDF link field in *Publication*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: publication.pdf
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	pdf: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * BibTeX key field in *Publication*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: publication.bibtex_key
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	bibtex_key: prismic.KeyTextField;
+	
+	/**
+	 * Title field in *Publication*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: publication.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+}
+
+/**
+ * Publication document from Prismic
+ *
+ * - **API ID**: `publication`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PublicationDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<PublicationDocumentData>, "publication", Lang>;
+
 type ResearchDocumentDataSlicesSlice = InternalHeroSlice | ResearchPublicationsSlice
 
 /**
@@ -999,7 +1138,7 @@ interface UrucupDocumentData {
  */
 export type UrucupDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<UrucupDocumentData>, "urucup", Lang>;
 
-export type AllDocumentTypes = AboutDocument | AwardDocument | BlogDocument | BlogpostDocument | CompetitionDocument | ContactDocument | DonationsDocument | GalleryDocument | HomepageDocument | MenuDocument | ResearchDocument | TabsDocument | TeamDocument | UrucupDocument;
+export type AllDocumentTypes = AboutDocument | AwardDocument | BlogDocument | BlogpostDocument | CompetitionDocument | ContactDocument | DonationsDocument | GalleryDocument | HomepageDocument | MenuDocument | PublicationDocument | ResearchDocument | TabsDocument | TeamDocument | UrucupDocument;
 
 /**
  * Primary content in *About → Default → Primary*
@@ -1719,6 +1858,76 @@ export interface ResearchPublicationsSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	title: prismic.KeyTextField;
+	
+	/**
+	 * Filter: All field in *ResearchPublications → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: research_publications.default.primary.filter_all_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	filter_all_label: prismic.KeyTextField;
+	
+	/**
+	 * Filter: Scientific papers field in *ResearchPublications → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: research_publications.default.primary.filter_papers_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	filter_papers_label: prismic.KeyTextField;
+	
+	/**
+	 * Filter: TDPs field in *ResearchPublications → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: research_publications.default.primary.filter_tdps_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	filter_tdps_label: prismic.KeyTextField;
+	
+	/**
+	 * Button: Copy BibTeX field in *ResearchPublications → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: research_publications.default.primary.copy_bibtex_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	copy_bibtex_label: prismic.KeyTextField;
+	
+	/**
+	 * Button: Copied field in *ResearchPublications → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: research_publications.default.primary.copied_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	copied_label: prismic.KeyTextField;
+	
+	/**
+	 * Badge: Accepted field in *ResearchPublications → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: research_publications.default.primary.accepted_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	accepted_label: prismic.KeyTextField;
+	
+	/**
+	 * Badge: Preprint field in *ResearchPublications → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: research_publications.default.primary.preprint_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	preprint_label: prismic.KeyTextField;
 }
 
 /**
@@ -2042,6 +2251,8 @@ declare module "@prismicio/client" {
 			HomepageDocumentDataSlicesSlice,
 			MenuDocument,
 			MenuDocumentData,
+			PublicationDocument,
+			PublicationDocumentData,
 			ResearchDocument,
 			ResearchDocumentData,
 			ResearchDocumentDataSlicesSlice,

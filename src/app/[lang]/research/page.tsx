@@ -7,7 +7,6 @@ import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 import { getMenuItems } from '@/components/Utils/MenuItems';
 import {asText} from "@prismicio/client";
-import { PublicationsList } from '@/components/PublicationsList';
 
 export const dynamicParams = false;
 
@@ -34,17 +33,10 @@ export default async function Page({ params }: { params: Promise<{ lang: string;
 
     const locales = await getLocales(page, client);
     const navigation = getMenuItems(lang);
-    const legacyList: any = page.data.slices.find((s: any) => s.slice_type === 'research_publications');
-    const listTitle: string | null = legacyList?.primary?.title ?? null;
 
     return (
         <Layout locales={locales} navigation={navigation}>
-            {/* Legacy list slice is superseded by PublicationsList (it carried a crossed arXiv link). */}
-            <SliceZone
-                slices={page.data.slices.filter((s: any) => s.slice_type !== 'research_publications')}
-                components={components}
-            />
-            <PublicationsList lang={lang} title={listTitle} />
+            <SliceZone slices={page.data.slices} components={components} />
         </Layout>
     );
 }

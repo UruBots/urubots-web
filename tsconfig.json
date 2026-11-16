@@ -27,6 +27,7 @@
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": [
     "node_modules",
+    "scripts/seed/import-publications.ts",
     "src/stories",
     "src/stories/**/*",
   ]

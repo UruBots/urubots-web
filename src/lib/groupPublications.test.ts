@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { publications } from '@/data/publications';
+import { seedPublications as publications } from '../../scripts/seed/publications.seed';
 import { groupPublications } from './groupPublications';
 
 describe('groupPublications', () => {

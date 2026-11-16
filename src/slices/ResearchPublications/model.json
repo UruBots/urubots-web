@@ -41,6 +41,48 @@
             "placeholder": "Research Publications"
           },
           "type": "Text"
+        },
+        "filter_all_label": {
+          "config": {
+            "label": "Filter: All"
+          },
+          "type": "Text"
+        },
+        "filter_papers_label": {
+          "config": {
+            "label": "Filter: Scientific papers"
+          },
+          "type": "Text"
+        },
+        "filter_tdps_label": {
+          "config": {
+            "label": "Filter: TDPs"
+          },
+          "type": "Text"
+        },
+        "copy_bibtex_label": {
+          "config": {
+            "label": "Button: Copy BibTeX"
+          },
+          "type": "Text"
+        },
+        "copied_label": {
+          "config": {
+            "label": "Button: Copied"
+          },
+          "type": "Text"
+        },
+        "accepted_label": {
+          "config": {
+            "label": "Badge: Accepted"
+          },
+          "type": "Text"
+        },
+        "preprint_label": {
+          "config": {
+            "label": "Badge: Preprint"
+          },
+          "type": "Text"
         }
       },
       "version": "initial"

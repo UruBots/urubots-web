@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { publications } from './publications';
+import { seedPublications as publications } from './publications.seed';
 
 const find = (arxiv: string) => publications.find((p) => p.arxiv === arxiv);
 

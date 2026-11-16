@@ -1,0 +1,98 @@
+{
+  "format": "custom",
+  "id": "publication",
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "kind": {
+        "config": {
+          "default_value": "paper",
+          "label": "Kind",
+          "options": [
+            "paper",
+            "tdp"
+          ]
+        },
+        "type": "Select"
+      },
+      "year": {
+        "config": {
+          "label": "Year",
+          "max": 2100,
+          "min": 2000
+        },
+        "type": "Number"
+      },
+      "authors": {
+        "config": {
+          "label": "Authors (separated by ;)"
+        },
+        "type": "Text"
+      },
+      "venue": {
+        "config": {
+          "label": "Venue"
+        },
+        "type": "Text"
+      },
+      "status": {
+        "config": {
+          "default_value": "preprint",
+          "label": "Status",
+          "options": [
+            "published",
+            "accepted",
+            "preprint"
+          ]
+        },
+        "type": "Select"
+      },
+      "summary": {
+        "config": {
+          "label": "Summary (one line)"
+        },
+        "type": "Text"
+      },
+      "arxiv": {
+        "config": {
+          "label": "arXiv ID"
+        },
+        "type": "Text"
+      },
+      "doi": {
+        "config": {
+          "label": "DOI link",
+          "select": "web"
+        },
+        "type": "Link"
+      },
+      "pdf": {
+        "config": {
+          "label": "PDF link",
+          "select": "web"
+        },
+        "type": "Link"
+      },
+      "bibtex_key": {
+        "config": {
+          "label": "BibTeX key"
+        },
+        "type": "Text"
+      },
+      "title": {
+        "config": {
+          "label": "Title"
+        },
+        "type": "Text"
+      }
+    }
+  },
+  "label": "Publication",
+  "repeatable": true,
+  "status": true
+}
