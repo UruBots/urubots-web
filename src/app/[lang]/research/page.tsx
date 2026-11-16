@@ -33,6 +33,8 @@ export default async function Page({params: { lang, uid } }: { params: { lang: s
 
     const locales = await getLocales(page, client);
     const navigation = getMenuItems(lang);
+    const legacyList: any = page.data.slices.find((s: any) => s.slice_type === 'research_publications');
+    const listTitle: string | null = legacyList?.primary?.title ?? null;
 
     return (
         <Layout locales={locales} navigation={navigation}>
@@ -41,7 +43,7 @@ export default async function Page({params: { lang, uid } }: { params: { lang: s
                 slices={page.data.slices.filter((s: any) => s.slice_type !== 'research_publications')}
                 components={components}
             />
-            <PublicationsList lang={lang} />
+            <PublicationsList lang={lang} title={listTitle} />
         </Layout>
     );
 }

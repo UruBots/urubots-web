@@ -5,10 +5,10 @@ import { publications, type Publication } from '@/data/publications';
 import { toBibtex } from '@/lib/bibtex';
 import { groupPublications, type PublicationFilter } from '@/lib/groupPublications';
 
-const labels: Record<string, { all: string; paper: string; tdp: string; copy: string; copied: string; accepted: string; preprint: string }> = {
-  'en-us': { all: 'All', paper: 'Scientific papers', tdp: 'TDPs', copy: 'Copy BibTeX', copied: 'Copied!', accepted: 'Accepted', preprint: 'Preprint' },
-  'es-ar': { all: 'Todos', paper: 'Artículos científicos', tdp: 'TDPs', copy: 'Copiar BibTeX', copied: '¡Copiado!', accepted: 'Aceptado', preprint: 'Preprint' },
-  'pt-br': { all: 'Todos', paper: 'Artigos científicos', tdp: 'TDPs', copy: 'Copiar BibTeX', copied: 'Copiado!', accepted: 'Aceito', preprint: 'Preprint' },
+const labels: Record<string, { title: string; all: string; paper: string; tdp: string; copy: string; copied: string; accepted: string; preprint: string }> = {
+  'en-us': { title: 'Publications & TDPs', all: 'All', paper: 'Scientific papers', tdp: 'TDPs', copy: 'Copy BibTeX', copied: 'Copied!', accepted: 'Accepted', preprint: 'Preprint' },
+  'es-ar': { title: 'Publicaciones y TDPs', all: 'Todos', paper: 'Artículos científicos', tdp: 'TDPs', copy: 'Copiar BibTeX', copied: '¡Copiado!', accepted: 'Aceptado', preprint: 'Preprint' },
+  'pt-br': { title: 'Publicações e TDPs', all: 'Todos', paper: 'Artigos científicos', tdp: 'TDPs', copy: 'Copiar BibTeX', copied: 'Copiado!', accepted: 'Aceito', preprint: 'Preprint' },
 };
 
 const linkClass =
@@ -58,15 +58,21 @@ function Card({ pub, t }: { pub: Publication; t: (typeof labels)['en-us'] }) {
   );
 }
 
-export function PublicationsList({ lang }: { lang: string }) {
+export function PublicationsList({ lang, title }: { lang: string; title?: string | null }) {
   const t = labels[lang] ?? labels['en-us'];
   const [filter, setFilter] = useState<PublicationFilter>('all');
   const groups = groupPublications(publications, filter);
   const tabs: PublicationFilter[] = ['all', 'paper', 'tdp'];
 
   return (
-    <section className="pb-20 bg-white dark:bg-gray-900">
+    <section className="pt-20 pb-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4 max-w-4xl">
+        <div className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold text-black dark:text-white sm:text-4xl md:text-[45px]">
+            {title || t.title}
+          </h2>
+          <div className="h-1 w-20 rounded bg-blue-900 dark:bg-blue-500" />
+        </div>
         <div className="mb-8 flex flex-wrap gap-2" role="tablist">
           {tabs.map((key) => (
             <button
