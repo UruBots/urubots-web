@@ -54,6 +54,12 @@ describe('press seed', () => {
     }
   });
 
+  it('uses a photo already hosted in Prismic for the Diario NORTE posts (no outlet image available)', () => {
+    const norte = pressItems.filter((p) => p.outlet === 'Diario NORTE');
+    expect(norte).toHaveLength(2);
+    for (const p of norte) expect(p.image!.url, p.id).toMatch(/^https:\/\/images\.prismic\.io\/urubots\//);
+  });
+
   it('does not repeat the facts that outlets got wrong', () => {
     const all = JSON.stringify(pressItems).toLowerCase();
     expect(all).not.toContain('16 equipos');

@@ -114,7 +114,7 @@ export const pressItems: PressItem[] = [
     sourceLabel: readArticle('Diario NORTE'),
     url: 'https://diarionorte.com.uy/ensenanza/estudiantes-de-utec-ganan-prueba-de-cooperacion-entre-vehiculos-autonomos-en-mundial-de-robotica-77945.html',
     videoUrl: null,
-    image: { url: 'https://imagenes.montevideo.com.uy/imgnoticias/202608/_W933_80/967357.jpg', credit: 'UTEC (publicada por Montevideo Portal)', alt: 'Equipo Urubots que compitió en la FIRA RoboWorld Cup 2026 en Canadá' },
+    image: { url: 'https://images.prismic.io/urubots/aezYiMBOoF08xTIF_ed4e1aafbdf56b76e391798481341db44b4e3392.jpg', credit: 'UruBots / UTEC', alt: 'Equipo Urubots de UTEC Rivera' },
   },
   {
     id: 'prensa-2026-07-23-diario-norte',
@@ -135,7 +135,7 @@ export const pressItems: PressItem[] = [
     sourceLabel: readArticle('Diario NORTE'),
     url: 'https://diarionorte.com.uy/ensenanza/urubots-obtuvo-un-primer-puesto-en-canada-en-la-competencia-mundial-de-robotica-77979.html',
     videoUrl: null,
-    image: { url: 'https://imagenes.montevideo.com.uy/imgnoticias/202608/_W933_80/967357.jpg', credit: 'UTEC (publicada por Montevideo Portal)', alt: 'Equipo Urubots que compitió en la FIRA RoboWorld Cup 2026 en Canadá' },
+    image: { url: 'https://images.prismic.io/urubots/aezYiMBOoF08xTIF_ed4e1aafbdf56b76e391798481341db44b4e3392.jpg', credit: 'UruBots / UTEC', alt: 'Equipo Urubots de UTEC Rivera' },
   },
   {
     id: 'prensa-2026-07-25-telenoche',
