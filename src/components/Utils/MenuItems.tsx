@@ -50,6 +50,12 @@ const menuData = {
       path: '/en-us/contact',
       newTab: false,
     },
+    {
+      id: 9,
+      title: '@Home',
+      path: '/en-us/athome',
+      newTab: false,
+    },
   ],
   'es-ar': [
     {
@@ -100,6 +106,12 @@ const menuData = {
       path: '/es-ar/contact',
       newTab: false,
     },
+    {
+      id: 9,
+      title: '@Home',
+      path: '/es-ar/athome',
+      newTab: false,
+    },
   ],
   'pt-br': [
     {
@@ -148,6 +160,12 @@ const menuData = {
       id: 8,
       title: 'Contato',
       path: '/pt-br/contact',
+      newTab: false,
+    },
+    {
+      id: 9,
+      title: '@Home',
+      path: '/pt-br/athome',
       newTab: false,
     },
   ],
