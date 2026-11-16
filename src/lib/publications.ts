@@ -64,5 +64,13 @@ export async function getPublications(
   if (docs.length === 0 && wanted !== FALLBACK_LOCALE) {
     docs = usable(await client.getAllByType('publication', { lang: FALLBACK_LOCALE }));
   }
-  return docs.map(fromPrismic);
+  const seen = new Set<string>();
+  return docs
+    .filter((d) => {
+      const key = String(d.data.title).trim().toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .map(fromPrismic);
 }

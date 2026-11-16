@@ -106,3 +106,16 @@ describe('getPublications ignores empty shells', () => {
     expect((await getPublications(c as any, 'pt-br')).map((p) => p.id)).toEqual(['ok']);
   });
 });
+
+describe('getPublications de-duplicates', () => {
+  it('shows a publication once when two documents carry the same title (original + replacement)', async () => {
+    const c = stub({ 'en-us': [doc(full, 'arxiv-2410.07209'), doc(full, 'arxiv-2410.07209-en'), doc({ ...full, title: 'Another one' }, 'x')] });
+    const out = await getPublications(c as any, 'en-us');
+    expect(out.map((p) => p.id)).toEqual(['arxiv-2410.07209', 'x']);
+  });
+
+  it('compares titles ignoring case and extra spaces', async () => {
+    const c = stub({ 'en-us': [doc(full, 'a'), doc({ ...full, title: `  ${full.title.toUpperCase()} ` }, 'b')] });
+    expect((await getPublications(c as any, 'en-us')).map((p) => p.id)).toEqual(['a']);
+  });
+});
