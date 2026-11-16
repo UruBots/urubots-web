@@ -15,6 +15,7 @@ import ResearchPublications from "./ResearchPublications";
 import SectionImageLeft from "./SectionImageLeft";
 import SectionImageRight from "./SectionImageRight";
 import Team from "./Team";
+import Trophies from "./Trophies";
 
 export const components = {
 	about: About,
@@ -31,5 +32,6 @@ export const components = {
 	research_publications: ResearchPublications,
 	section_image_left: SectionImageLeft,
 	section_image_right: SectionImageRight,
-	team: Team
+	team: Team,
+	trophies: Trophies
 };

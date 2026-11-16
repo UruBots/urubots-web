@@ -106,7 +106,7 @@ interface AboutDocumentData {
  */
 export type AboutDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<AboutDocumentData>, "about", Lang>;
 
-type AwardDocumentDataSlicesSlice = SectionImageRightSlice | SectionImageLeftSlice | HeroSlice
+type AwardDocumentDataSlicesSlice = SectionImageRightSlice | SectionImageLeftSlice | HeroSlice | TrophiesSlice
 
 /**
  * Content for award documents
@@ -2274,6 +2274,130 @@ type TeamSliceVariation = TeamSliceDefault
  */
 export type TeamSlice = prismic.SharedSlice<"team", TeamSliceVariation>;
 
+/**
+ * Primary content in *Trophies → Default → Primary*
+ */
+export interface TrophiesSliceDefaultPrimary {
+	/**
+	 * Title field in *Trophies → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trophies.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+	
+	/**
+	 * Subtitle field in *Trophies → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trophies.default.primary.subtitle
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	subtitle: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Trophies → Items*
+ */
+export interface TrophiesSliceDefaultItem {
+	/**
+	 * Year field in *Trophies → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: 2026
+	 * - **API ID Path**: trophies.items[].year
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	year: prismic.KeyTextField;
+	
+	/**
+	 * Event field in *Trophies → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: FIRA RoboWorld Cup
+	 * - **API ID Path**: trophies.items[].event
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	event: prismic.KeyTextField;
+	
+	/**
+	 * Location (country) field in *Trophies → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Canada
+	 * - **API ID Path**: trophies.items[].location
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	location: prismic.KeyTextField;
+	
+	/**
+	 * Trophy field in *Trophies → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: gold
+	 * - **API ID Path**: trophies.items[].medal
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	medal: prismic.SelectField<"gold" | "silver" | "bronze" | "laurel", "filled">;
+	
+	/**
+	 * Place (e.g. 1st place) field in *Trophies → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trophies.items[].place
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	place: prismic.KeyTextField;
+	
+	/**
+	 * Category / challenge field in *Trophies → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trophies.items[].category
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	category: prismic.KeyTextField;
+	
+	/**
+	 * Short description (optional) field in *Trophies → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trophies.items[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	description: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Trophies Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Trophy history grouped by year
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TrophiesSliceDefault = prismic.SharedSliceVariation<"default", Simplify<TrophiesSliceDefaultPrimary>, Simplify<TrophiesSliceDefaultItem>>;
+
+/**
+ * Slice variation for *Trophies*
+ */
+type TrophiesSliceVariation = TrophiesSliceDefault
+
+/**
+ * Trophies Shared Slice
+ *
+ * - **API ID**: `trophies`
+ * - **Description**: Trophies
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TrophiesSlice = prismic.SharedSlice<"trophies", TrophiesSliceVariation>;
+
 declare module "@prismicio/client" {
 	interface CreateClient {
 		(repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
@@ -2399,7 +2523,12 @@ declare module "@prismicio/client" {
 			TeamSliceDefaultPrimaryMembersItem,
 			TeamSliceDefaultPrimary,
 			TeamSliceVariation,
-			TeamSliceDefault
+			TeamSliceDefault,
+			TrophiesSlice,
+			TrophiesSliceDefaultPrimary,
+			TrophiesSliceDefaultItem,
+			TrophiesSliceVariation,
+			TrophiesSliceDefault
 		}
 	}
 }
