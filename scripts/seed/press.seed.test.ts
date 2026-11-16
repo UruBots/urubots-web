@@ -54,10 +54,10 @@ describe('press seed', () => {
     }
   });
 
-  it('uses a photo already hosted in Prismic for the Diario NORTE posts (no outlet image available)', () => {
-    const norte = pressItems.filter((p) => p.outlet === 'Diario NORTE');
-    expect(norte).toHaveLength(2);
-    for (const p of norte) expect(p.image!.url, p.id).toMatch(/^https:\/\/images\.prismic\.io\/urubots\//);
+  it('uses a photo already hosted in Prismic where the outlet image is unavailable (Diario NORTE, Telenoche)', () => {
+    const fallback = pressItems.filter((p) => ['Diario NORTE', 'Telenoche (Canal 4)'].includes(p.outlet));
+    expect(fallback).toHaveLength(3);
+    for (const p of fallback) expect(p.image!.url, p.id).toMatch(/^https:\/\/images\.prismic\.io\/urubots\//);
   });
 
   it('does not repeat the facts that outlets got wrong', () => {

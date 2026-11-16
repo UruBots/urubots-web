@@ -156,7 +156,7 @@ export const pressItems: PressItem[] = [
     sourceLabel: readArticle('Telenoche'),
     url: 'https://www.telenoche.com.uy/ciencia-y-tecnologia/el-grupo-urubots-utec-obtuvo-el-primer-puesto-prueba-vehiculos-autonomos-canada-n5402584',
     videoUrl: null,
-    image: { url: 'https://media.telenoche.com.uy/p/f4d906a3530c02f2a8cbc956075686aa/adjuntos/329/imagenes/000/215/0000215992/790x0/smart/-2026-07-25t144215780.png', credit: 'Telenoche', alt: 'Equipo Urubots de la UTEC de Rivera' },
+    image: { url: 'https://images.prismic.io/urubots/aezYiMBOoF08xTIF_ed4e1aafbdf56b76e391798481341db44b4e3392.jpg', credit: 'UruBots / UTEC', alt: 'Equipo Urubots de UTEC Rivera' },
   },
   {
     id: 'prensa-2026-08-04-la-diaria-radio',
