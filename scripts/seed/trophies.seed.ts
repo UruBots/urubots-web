@@ -26,109 +26,141 @@ export const trophiesIntro = {
   } as ByLocale,
 };
 
-const first: ByLocale = { 'en-us': '1st place', 'es-ar': '1.er puesto', 'pt-br': '1º lugar' };
-const third: ByLocale = { 'en-us': '3rd place', 'es-ar': '3.er puesto', 'pt-br': '3º lugar' };
-const canada: ByLocale = { 'en-us': 'Canada', 'es-ar': 'Canadá', 'pt-br': 'Canadá' };
-const korea: ByLocale = { 'en-us': 'South Korea', 'es-ar': 'Corea del Sur', 'pt-br': 'Coreia do Sul' };
-const brazil: ByLocale = { 'en-us': 'Brazil', 'es-ar': 'Brasil', 'pt-br': 'Brasil' };
-const germany: ByLocale = { 'en-us': 'Germany', 'es-ar': 'Alemania', 'pt-br': 'Alemanha' };
+const L = (en: string, es: string, pt: string): ByLocale => ({ 'en-us': en, 'es-ar': es, 'pt-br': pt });
+
+const first = L('1st place', '1.er puesto', '1º lugar');
+const third = L('3rd place', '3.er puesto', '3º lugar');
+const fifth = L('5th place', '5.º puesto', '5º lugar');
+
+const canada = L('Canada', 'Canadá', 'Canadá');
+const daegu = L('Daegu, South Korea', 'Daegu, Corea del Sur', 'Daegu, Coreia do Sul');
+const maranhao = L('São Luís do Maranhão, Brazil', 'São Luís do Maranhão, Brasil', 'São Luís do Maranhão, Brasil');
+const wolfenbuettel = L('Wolfenbüttel, Germany', 'Wolfenbüttel, Alemania', 'Wolfenbüttel, Alemanha');
+const korea = L('South Korea', 'Corea del Sur', 'Coreia do Sul');
+const salvador = L('Salvador de Bahía, Brazil', 'Salvador de Bahía, Brasil', 'Salvador da Bahia, Brasil');
 
 export const trophyItems: TrophyItem[] = [
+  // ---- 2026 ----
   {
     year: '2026',
     event: 'FIRA RoboWorld Cup',
     medal: 'gold',
     location: canada,
     place: first,
-    category: {
-      'en-us': '“United” technical challenge · Autonomous Cars',
-      'es-ar': 'Desafío técnico «United» · Autos Autónomos',
-      'pt-br': 'Desafio técnico «United» · Carros Autônomos',
-    },
-    description: {
-      'en-us': 'Won through an international real-time programming alliance.',
-      'es-ar': 'Lograron el primer puesto mediante una alianza internacional de programación en tiempo real.',
-      'pt-br': 'Conquistado por meio de uma aliança internacional de programação em tempo real.',
-    },
+    category: L(
+      'International “United” technical challenge · Autonomous Cars',
+      'Desafío técnico internacional «United» · Autos Autónomos',
+      'Desafio técnico internacional «United» · Carros Autônomos',
+    ),
+    description: L(
+      'Won together with students from Canada and Malaysia.',
+      'Lo lograron junto a estudiantes de Canadá y Malasia.',
+      'Conquistado junto a estudantes do Canadá e da Malásia.',
+    ),
   },
   {
     year: '2026',
     event: 'FIRA RoboWorld Cup',
     medal: 'laurel',
     location: canada,
-    place: { 'en-us': '4th place', 'es-ar': '4.º lugar', 'pt-br': '4º lugar' },
-    category: { 'en-us': 'Overall ranking of the competition', 'es-ar': 'Clasificación general de la competencia', 'pt-br': 'Classificação geral da competição' },
+    place: L('4th place', '4.º puesto', '4º lugar'),
+    category: L(
+      'Autonomous Cars overall ranking, among 17 delegations',
+      'Clasificación general de Autos Autónomos, entre 17 delegaciones',
+      'Classificação geral de Carros Autônomos, entre 17 delegações',
+    ),
+    description: null,
+  },
+  {
+    year: '2026',
+    event: 'RoboCup',
+    medal: 'laurel',
+    location: korea,
+    place: L('Participation', 'Participación', 'Participação'),
+    category: L(
+      'Qualified and represented Uruguay in multiple categories',
+      'Clasificaron y representaron a Uruguay en múltiples categorías',
+      'Classificaram-se e representaram o Uruguai em múltiplas categorias',
+    ),
+    description: L('Competed in June/July.', 'Compitieron en junio y julio.', 'Competiram em junho e julho.'),
+  },
+  // ---- 2025 ----
+  {
+    year: '2025',
+    event: 'FIRA RoboWorld Cup',
+    medal: 'gold',
+    location: daegu,
+    place: first,
+    category: L('Autonomous Drones technical challenge', 'Desafío técnico de Drones Autónomos', 'Desafio técnico de Drones Autônomos'),
     description: null,
   },
   {
     year: '2025',
     event: 'FIRA RoboWorld Cup',
-    medal: 'gold',
-    location: korea,
-    place: first,
-    category: { 'en-us': 'Drones', 'es-ar': 'Drones', 'pt-br': 'Drones' },
+    medal: 'bronze',
+    location: daegu,
+    place: third,
+    category: L('Drones overall ranking', 'Tabla general de Drones', 'Classificação geral de Drones'),
     description: null,
   },
   {
     year: '2025',
     event: 'FIRA RoboWorld Cup',
     medal: 'laurel',
-    location: korea,
-    place: { 'en-us': 'Top 5', 'es-ar': 'Top 5', 'pt-br': 'Top 5' },
-    category: { 'en-us': 'Rescue', 'es-ar': 'Rescue', 'pt-br': 'Rescue' },
+    location: daegu,
+    place: fifth,
+    category: L('Rescue overall category', 'Categoría general Rescue', 'Categoria geral Rescue'),
+    description: null,
+  },
+  {
+    year: '2025',
+    event: 'FIRA RoboWorld Cup',
+    medal: 'gold',
+    location: daegu,
+    place: L('Highest score', 'Mayor puntaje', 'Maior pontuação'),
+    category: L('Mobility subcategory · Rescue', 'Subcategoría Movilidad · Rescue', 'Subcategoria Mobilidade · Rescue'),
     description: null,
   },
   {
     year: '2025',
     event: 'RoboCup',
     medal: 'gold',
-    location: brazil,
+    location: salvador,
     place: first,
-    category: { 'en-us': 'Mobility subcategory · Rescue', 'es-ar': 'Subcategoría Movilidad · Rescue', 'pt-br': 'Subcategoria Mobilidade · Rescue' },
-    description: {
-      'en-us': 'Highest score in the Mobility subcategory of the Rescue category.',
-      'es-ar': 'Obtuvieron el mayor puntaje de la subcategoría Movilidad, en la categoría Rescue.',
-      'pt-br': 'Obtiveram a maior pontuação da subcategoria Mobilidade, na categoria Rescue.',
-    },
+    category: L('A subcategory of their competition division', 'Una subcategoría de su división de competencia', 'Uma subcategoria da sua divisão de competição'),
+    description: L(
+      'Historic debut at the event: the team had not taken part in earlier RoboCup editions.',
+      'En su debut histórico en este certamen: el equipo no había participado en ediciones anteriores de RoboCup.',
+      'Na sua estreia histórica no evento: a equipe não havia participado de edições anteriores da RoboCup.',
+    ),
   },
+  // ---- 2024 ----
   {
-    year: '2025',
-    event: 'RoboCup',
-    medal: 'laurel',
-    location: brazil,
-    place: { 'en-us': '5th place', 'es-ar': '5.º puesto', 'pt-br': '5º lugar' },
-    category: { 'en-us': 'Rescue · overall ranking', 'es-ar': 'Rescue · clasificación general', 'pt-br': 'Rescue · classificação geral' },
-    description: null,
+    year: '2024',
+    event: 'FIRA RoboWorld Cup',
+    medal: 'bronze',
+    location: maranhao,
+    place: third,
+    category: L('Autonomous Cars', 'Autos Autónomos', 'Carros Autônomos'),
+    description: L('Overall category.', 'Categoría general.', 'Categoria geral.'),
   },
   {
     year: '2024',
     event: 'FIRA RoboWorld Cup',
     medal: 'bronze',
-    location: brazil,
+    location: maranhao,
     place: third,
-    category: { 'en-us': 'Humanoids', 'es-ar': 'Humanoides', 'pt-br': 'Humanoides' },
-    description: { 'en-us': 'World podium.', 'es-ar': 'Podio mundial.', 'pt-br': 'Pódio mundial.' },
+    category: L('Humanoids', 'Humanoides', 'Humanoides'),
+    description: L('Overall category.', 'Categoría general.', 'Categoria geral.'),
   },
-  {
-    year: '2024',
-    event: 'FIRA RoboWorld Cup',
-    medal: 'bronze',
-    location: brazil,
-    place: third,
-    category: { 'en-us': 'Autonomous Cars', 'es-ar': 'Autos Autónomos', 'pt-br': 'Carros Autônomos' },
-    description: { 'en-us': 'World podium.', 'es-ar': 'Podio mundial.', 'pt-br': 'Pódio mundial.' },
-  },
+  // ---- 2023 ----
   {
     year: '2023',
     event: 'FIRA RoboWorld Cup',
     medal: 'gold',
-    location: germany,
+    location: wolfenbuettel,
     place: first,
-    category: { 'en-us': '“Mission Impossible” subcategory', 'es-ar': 'Subcategoría «Misión Imposible»', 'pt-br': 'Subcategoria «Missão Impossível»' },
-    description: {
-      'en-us': 'First place in the team’s international debut.',
-      'es-ar': 'Primer puesto en su debut internacional.',
-      'pt-br': 'Primeiro lugar na estreia internacional da equipe.',
-    },
+    category: L('“Mission Impossible United” subcategory', 'Subcategoría «Mission Impossible United»', 'Subcategoria «Mission Impossible United»'),
+    description: L('In the team’s world-cup debut.', 'En su debut mundialista.', 'Na sua estreia em um mundial.'),
   },
 ];

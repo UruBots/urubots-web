@@ -3,14 +3,12 @@ import { trophyItems, trophiesIntro, LOCALES } from './trophies.seed';
 import { trophiesSlice, insertTrophies } from './toTrophiesSlice';
 
 describe('trophies seed', () => {
-  it('has the 9 trophies of the FIRA RoboWorld Cup and RoboCup history', () => {
-    expect(trophyItems).toHaveLength(9);
-    expect(trophyItems.filter((t) => t.event === 'FIRA RoboWorld Cup')).toHaveLength(7);
+  it('has the 11 achievements of the FIRA RoboWorld Cup and RoboCup history', () => {
+    expect(trophyItems).toHaveLength(11);
+    expect(trophyItems.filter((t) => t.event === 'FIRA RoboWorld Cup')).toHaveLength(9);
     expect(trophyItems.filter((t) => t.event === 'RoboCup')).toHaveLength(2);
-    expect(trophyItems.filter((t) => t.year === '2026')).toHaveLength(2);
-    expect(trophyItems.filter((t) => t.year === '2025')).toHaveLength(4);
-    expect(trophyItems.filter((t) => t.year === '2024')).toHaveLength(2);
-    expect(trophyItems.filter((t) => t.year === '2023')).toHaveLength(1);
+    const count = (y: string) => trophyItems.filter((t) => t.year === y).length;
+    expect([count('2026'), count('2025'), count('2024'), count('2023')]).toEqual([3, 5, 2, 1]);
   });
 
   it('has valid medals and every text in the 3 locales', () => {
@@ -29,22 +27,51 @@ describe('trophies seed', () => {
   });
 
   it('keeps the facts given by the team', () => {
-    const y = (n: string) => trophyItems.filter((t) => t.year === n);
-    expect(y('2026').map((t) => t.medal)).toEqual(['gold', 'laurel']);
-    expect(y('2026')[0].description!['es-ar']).toContain('alianza internacional de programación en tiempo real');
-    expect(JSON.stringify(trophyItems)).not.toContain('Malasia');
-    const robocup = y('2025').filter((t) => t.event === 'RoboCup');
-    expect(robocup.map((t) => t.medal)).toEqual(['gold', 'laurel']);
-    expect(robocup[0].category['es-ar']).toContain('Movilidad');
-    expect(robocup[0].description!['es-ar']).toContain('mayor puntaje');
-    expect(robocup[1].place['es-ar']).toContain('5');
-    const fira2025 = y('2025').filter((t) => t.event === 'FIRA RoboWorld Cup');
-    expect(fira2025.map((t) => t.medal)).toEqual(['gold', 'laurel']);
-    expect(fira2025.every((t) => t.location['es-ar'] === 'Corea del Sur')).toBe(true);
-    expect(fira2025[0].place['es-ar']).toBe('1.er puesto');
-    expect(fira2025[0].category['es-ar']).toBe('Drones');
-    expect(fira2025[1].place['es-ar']).toBe('Top 5');
-    expect(fira2025[1].category['es-ar']).toBe('Rescue');
+    const es = (t: any, k: 'location' | 'place' | 'category') => t[k]['es-ar'] as string;
+    const fira = (y: string) => trophyItems.filter((t) => t.year === y && t.event === 'FIRA RoboWorld Cup');
+    const robocup = (y: string) => trophyItems.filter((t) => t.year === y && t.event === 'RoboCup');
+
+    // FIRA 2026 (Canadá)
+    const f26 = fira('2026');
+    expect(f26.map((t) => t.medal)).toEqual(['gold', 'laurel']);
+    expect(es(f26[0], 'category')).toContain('United');
+    expect(es(f26[0], 'category')).toContain('Autos Autónomos');
+    expect(f26[0].description!['es-ar']).toContain('estudiantes de Canadá y Malasia');
+    expect(es(f26[1], 'place')).toBe('4.º puesto');
+    expect(es(f26[1], 'category')).toContain('17 delegaciones');
+
+    // FIRA 2025 (Daegu)
+    const f25 = fira('2025');
+    expect(f25.map((t) => t.medal)).toEqual(['gold', 'bronze', 'laurel', 'gold']);
+    expect(f25.every((t) => es(t, 'location') === 'Daegu, Corea del Sur')).toBe(true);
+    expect(es(f25[0], 'category')).toContain('Drones Autónomos');
+    expect(es(f25[1], 'place')).toBe('3.er puesto');
+    expect(es(f25[1], 'category')).toContain('Drones');
+    expect(es(f25[2], 'place')).toBe('5.º puesto');
+    expect(es(f25[2], 'category')).toContain('Rescue');
+    expect(es(f25[3], 'place')).toBe('Mayor puntaje');
+    expect(es(f25[3], 'category')).toContain('Movilidad');
+
+    // FIRA 2024 and 2023
+    expect(fira('2024').map((t) => t.medal)).toEqual(['bronze', 'bronze']);
+    expect(fira('2024').every((t) => es(t, 'location') === 'São Luís do Maranhão, Brasil')).toBe(true);
+    expect(fira('2024').map((t) => es(t, 'category'))).toEqual(['Autos Autónomos', 'Humanoides']);
+    expect(es(fira('2023')[0], 'location')).toBe('Wolfenbüttel, Alemania');
+    expect(es(fira('2023')[0], 'category')).toContain('Mission Impossible United');
+    expect(fira('2023')[0].description!['es-ar']).toContain('debut mundialista');
+
+    // RoboCup: 2026 participation (no podium claimed) and 2025 debut
+    const r26 = robocup('2026');
+    expect(r26).toHaveLength(1);
+    expect(es(r26[0], 'location')).toBe('Corea del Sur');
+    expect(r26[0].medal).toBe('laurel');
+    expect(es(r26[0], 'place')).toBe('Participación');
+    const r25 = robocup('2025');
+    expect(r25).toHaveLength(1);
+    expect(es(r25[0], 'location')).toBe('Salvador de Bahía, Brasil');
+    expect(r25[0].medal).toBe('gold');
+    expect(es(r25[0], 'place')).toBe('1.er puesto');
+    expect(r25[0].description!['es-ar']).toContain('debut histórico');
   });
 });
 
@@ -53,7 +80,7 @@ describe('trophiesSlice / insertTrophies', () => {
     const s = trophiesSlice('en-us');
     expect(s.slice_type).toBe('trophies');
     expect(s.primary.title).toBe(trophiesIntro.title['en-us']);
-    expect(s.items).toHaveLength(9);
+    expect(s.items).toHaveLength(11);
     expect(s.items[0]).toMatchObject({ year: '2026', event: 'FIRA RoboWorld Cup', medal: 'gold', place: '1st place' });
     expect(s.items.filter((i: any) => i.event === 'RoboCup')).toHaveLength(2);
     expect(s.items.every((i: any) => typeof i.description === 'string')).toBe(true);
