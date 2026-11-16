@@ -34,7 +34,7 @@ const menuData = {
     },
     {
       id: 6,
-      title: 'TDPs',
+      title: 'Publications',
       path: '/en-us/research',
       newTab: false,
     },
@@ -84,7 +84,7 @@ const menuData = {
     },
     {
       id: 6,
-      title: 'TDPs',
+      title: 'Publicaciones',
       path: '/research',
       newTab: false,
     },
@@ -134,7 +134,7 @@ const menuData = {
     },
     {
       id: 6,
-      title: 'TDPs',
+      title: 'Publicações',
       path: '/pt-br/research',
       newTab: false,
     },

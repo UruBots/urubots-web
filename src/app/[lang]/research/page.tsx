@@ -7,6 +7,7 @@ import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 import { getMenuItems } from '@/components/Utils/MenuItems';
 import {asText} from "@prismicio/client";
+import { PublicationsList } from '@/components/PublicationsList';
 
 export const dynamicParams = false;
 
@@ -36,6 +37,7 @@ export default async function Page({params: { lang, uid } }: { params: { lang: s
     return (
         <Layout locales={locales} navigation={navigation}>
             <SliceZone slices={page.data.slices} components={components} />
+            <PublicationsList lang={lang} />
         </Layout>
     );
 }
