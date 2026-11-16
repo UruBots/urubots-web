@@ -76,7 +76,7 @@ export const Header = ({locales, navigation}: HeaderProps) => {
                     <div className='relative -mx-4 flex items-center justify-between ml-4 mr-4'>
                         <div className='w-60 max-w-full px-1 md:px-4 xl:mr-12'>
                             <Link
-                                href='/'
+                                href={`/${lang}`}
                                 className={`header-logo block w-full ${
                                     sticky ? 'py-5 lg:py-2' : 'py-8'
                                 } `}
