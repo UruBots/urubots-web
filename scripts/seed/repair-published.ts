@@ -29,8 +29,13 @@ for (const { seed, lang, newUid } of plan) {
   const migration = prismic.createMigration();
   const doc = { ...toPrismicDocument(seed, lang as 'en-us' | 'es-ar' | 'pt-br'), uid: newUid };
   migration.createDocument(doc as any, seed.title);
-  await client.migrate(migration);
-  created++;
-  console.log(`created ${lang} ${newUid}`);
+  try {
+    await client.migrate(migration);
+    created++;
+    console.log(`created ${lang} ${newUid}`);
+  } catch (e: any) {
+    if (String(e?.response?.message ?? e?.message).includes('already exists')) console.log(`existing ${lang} ${newUid}`);
+    else throw e;
+  }
 }
-console.log(`${created} replacements created. Review and publish the migration release in Prismic.`);
+console.log(`${created} replacements created (the rest already existed). Review and publish the migration release in Prismic.`);
