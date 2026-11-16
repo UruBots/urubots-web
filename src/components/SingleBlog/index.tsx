@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import {PrismicImage, PrismicRichText} from "@prismicio/react";
 import {useParams} from 'next/navigation'
+import {formatPostDate} from '@/lib/press'
 
 export const SingleBlog = ({ blog }:any) => {
-  const { id, title, image, paragraph} = blog.data;
+  const { id, title, image, paragraph, source_name, publication_date} = blog.data;
   const params = useParams()
   const {lang} = params
 
@@ -13,10 +14,17 @@ export const SingleBlog = ({ blog }:any) => {
         className='wow fadeInUp relative overflow-hidden rounded-md dark:bg-gray-900 bg-white shadow-one dark:bg-dark'
         data-wow-delay='.1s'
       >
-        <Link href={`/${lang}/blog/${blog.uid}`} className='relative block h-[220px] w-full'>
-          <PrismicImage field={image} className="w-full h-[220px]"/>
-        </Link>
+        {image?.url && (
+          <Link href={`/${lang}/blog/${blog.uid}`} className='relative block h-[220px] w-full'>
+            <PrismicImage field={image} className="w-full h-[220px]"/>
+          </Link>
+        )}
         <div className='p-6 sm:p-8 md:py-8 md:px-6 lg:p-8 xl:py-8 xl:px-5 2xl:p-8'>
+          {(source_name || publication_date) && (
+            <p className='mb-2 text-sm text-gray-600 dark:text-gray-300'>
+              {[source_name, formatPostDate(publication_date, lang as string)].filter(Boolean).join(' · ')}
+            </p>
+          )}
           <h3>
             <Link
               href={`/${lang}/blog/${blog.uid}`}

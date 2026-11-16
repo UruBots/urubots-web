@@ -5,6 +5,7 @@ import {getLocales} from "@/lib/getLocales";
 import {getMenuItems} from "@/components/Utils/MenuItems";
 import Layout from "@/components/Layout";
 import {BlogItem} from "@/components/BlogItem";
+import {LOCALES} from "@/lib/locales";
 
 export const dynamicParams = false;
 type Params = { uid: string };
@@ -24,11 +25,23 @@ export async function generateMetadata({params}: { params: Promise<Params> }): P
     };
 }
 
-export default async function Page({params: {uid, lang}}: { params: { uid: string; lang: string }; }) {
+export default async function Page({ params }: { params: Promise<{ uid: string; lang: string }> }) {
+  const { uid, lang } = await params;
     const client = createClient();
     const page = await client
         .getByUID('blogpost', uid, {lang})
         .catch(() => notFound());
+
+    // Translated copies may lack the cover image: reuse the one of the same post in another locale.
+    if (!page.data.image?.url) {
+        for (const other of LOCALES.filter((l) => l !== lang)) {
+            const sibling = await client.getByUID('blogpost', uid, {lang: other}).catch(() => null);
+            if (sibling?.data.image?.url) {
+                page.data.image = sibling.data.image;
+                break;
+            }
+        }
+    }
 
     const locales = await getLocales(page, client);
     const navigation = getMenuItems(lang);
@@ -36,7 +49,7 @@ export default async function Page({params: {uid, lang}}: { params: { uid: strin
     return (
         <Layout locales={locales} navigation={navigation}>
             {/*<SliceZone slices={page.data.slices} components={components}/>*/}
-            <BlogItem slice={page.data} />
+            <BlogItem slice={page.data} lang={lang} />
         </Layout>
     );
 }

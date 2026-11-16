@@ -1,9 +1,6 @@
 {
-  "id": "award",
-  "label": "award",
   "format": "page",
-  "repeatable": true,
-  "status": true,
+  "id": "award",
   "json": {
     "Main": {
       "uid": {
@@ -13,8 +10,6 @@
         "type": "UID"
       },
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "section_image_right": {
@@ -25,9 +20,14 @@
             },
             "hero": {
               "type": "SharedSlice"
+            },
+            "trophies": {
+              "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
@@ -57,5 +57,8 @@
         "type": "Text"
       }
     }
-  }
+  },
+  "label": "award",
+  "repeatable": true,
+  "status": true
 }

@@ -24,7 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function Page({params: { lang, uid } }: { params: { lang: string; uid: string }; }) {
+export default async function Page({ params }: { params: Promise<{ lang: string; uid: string }> }) {
+  const { lang, uid } = await params;
     const client = createClient();
     const page = await client
         .getByUID('research', 'research', { lang })
@@ -35,7 +36,7 @@ export default async function Page({params: { lang, uid } }: { params: { lang: s
 
     return (
         <Layout locales={locales} navigation={navigation}>
-            <SliceZone slices={page.data.slices} components={components} />
+            <SliceZone slices={page.data.slices} components={components} context={{ lang }} />
         </Layout>
     );
 }

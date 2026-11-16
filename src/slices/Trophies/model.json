@@ -1,0 +1,87 @@
+{
+  "id": "trophies",
+  "name": "Trophies",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Trophy history grouped by year",
+      "docURL": "",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "title": {
+          "config": {
+            "label": "Title"
+          },
+          "type": "Text"
+        },
+        "subtitle": {
+          "config": {
+            "label": "Subtitle"
+          },
+          "type": "Text"
+        }
+      },
+      "version": "",
+      "items": {
+        "year": {
+          "type": "Text",
+          "config": {
+            "label": "Year",
+            "placeholder": "2026"
+          }
+        },
+        "event": {
+          "type": "Text",
+          "config": {
+            "label": "Event",
+            "placeholder": "FIRA RoboWorld Cup"
+          }
+        },
+        "location": {
+          "type": "Text",
+          "config": {
+            "label": "Location (country)",
+            "placeholder": "Canada"
+          }
+        },
+        "medal": {
+          "type": "Select",
+          "config": {
+            "label": "Trophy",
+            "options": [
+              "gold",
+              "silver",
+              "bronze",
+              "laurel"
+            ],
+            "default_value": "gold"
+          }
+        },
+        "place": {
+          "type": "Text",
+          "config": {
+            "label": "Place (e.g. 1st place)",
+            "placeholder": ""
+          }
+        },
+        "category": {
+          "type": "Text",
+          "config": {
+            "label": "Category / challenge",
+            "placeholder": ""
+          }
+        },
+        "description": {
+          "type": "Text",
+          "config": {
+            "label": "Short description (optional)",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ],
+  "description": "Trophies"
+}

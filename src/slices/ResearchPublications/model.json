@@ -1,49 +1,91 @@
 {
-  "id": "research_publications",
-  "type": "SharedSlice",
-  "name": "ResearchPublications",
   "description": "ResearchPublications",
+  "id": "research_publications",
+  "name": "ResearchPublications",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
-      "primary": {
-        "title": {
-          "type": "Text",
-          "config": {
-            "label": "Title",
-            "placeholder": "Research Publications"
-          }
-        }
-      },
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
       "items": {
         "publication_title": {
-          "type": "Text",
           "config": {
             "label": "Publication Title",
             "placeholder": "Enter the publication title"
-          }
+          },
+          "type": "Text"
         },
         "year": {
-          "type": "Number",
           "config": {
             "label": "Year",
             "placeholder": "Publication year (e.g., 2025)"
-          }
+          },
+          "type": "Number"
         },
         "link": {
-          "type": "Link",
           "config": {
             "label": "Link",
             "placeholder": "Link to arXiv PDF",
             "select": "web"
-          }
+          },
+          "type": "Link"
         }
-      }
+      },
+      "name": "Default",
+      "primary": {
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": "Research Publications"
+          },
+          "type": "Text"
+        },
+        "filter_all_label": {
+          "config": {
+            "label": "Filter: All"
+          },
+          "type": "Text"
+        },
+        "filter_papers_label": {
+          "config": {
+            "label": "Filter: Scientific papers"
+          },
+          "type": "Text"
+        },
+        "filter_tdps_label": {
+          "config": {
+            "label": "Filter: TDPs"
+          },
+          "type": "Text"
+        },
+        "copy_bibtex_label": {
+          "config": {
+            "label": "Button: Copy BibTeX"
+          },
+          "type": "Text"
+        },
+        "copied_label": {
+          "config": {
+            "label": "Button: Copied"
+          },
+          "type": "Text"
+        },
+        "accepted_label": {
+          "config": {
+            "label": "Badge: Accepted"
+          },
+          "type": "Text"
+        },
+        "preprint_label": {
+          "config": {
+            "label": "Badge: Preprint"
+          },
+          "type": "Text"
+        }
+      },
+      "version": "initial"
     }
   ]
 }

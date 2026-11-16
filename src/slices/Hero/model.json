@@ -1,153 +1,153 @@
 {
-  "id": "hero",
-  "type": "SharedSlice",
-  "name": "Hero",
   "description": "Hero",
+  "id": "hero",
+  "name": "Hero",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/urubots/shared-slices/hero/default/3e8ef7981fe9ae37629665f73e94414ede5651a3.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "title": {
-          "type": "Text",
           "config": {
             "label": "title",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "subtitle": {
-          "type": "StructuredText",
           "config": {
-            "label": "subtitle",
-            "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-          }
+            "label": "subtitle",
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         },
         "image": {
-          "type": "Image",
           "config": {
-            "label": "image",
             "constraint": {},
+            "label": "image",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         },
         "button": {
-          "type": "Link",
           "config": {
-            "label": "button",
-            "placeholder": "",
-            "select": null,
             "allowTargetBlank": true,
             "allowText": true,
-            "repeat": false
-          }
+            "label": "button",
+            "placeholder": "",
+            "repeat": false,
+            "select": null
+          },
+          "type": "Link"
         }
       },
-      "items": {}
+      "version": "initial"
     },
     {
-      "id": "slider",
-      "name": "slider",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "slider",
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
+      "items": {},
+      "name": "slider",
       "primary": {
         "title": {
-          "type": "Text",
           "config": {
             "label": "title",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "subtitle": {
-          "type": "StructuredText",
           "config": {
-            "label": "subtitle",
-            "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-          }
+            "label": "subtitle",
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         },
         "images": {
-          "type": "Group",
           "config": {
-            "label": "images",
-            "repeat": true,
             "fields": {
               "image": {
-                "type": "Image",
                 "config": {
-                  "label": "image",
                   "constraint": {},
+                  "label": "image",
                   "thumbnails": []
-                }
+                },
+                "type": "Image"
               }
-            }
-          }
+            },
+            "label": "images",
+            "repeat": true
+          },
+          "type": "Group"
         },
         "button": {
-          "type": "Link",
           "config": {
-            "label": "button",
-            "placeholder": "",
-            "select": null,
             "allowTargetBlank": true,
             "allowText": true,
-            "repeat": false
-          }
+            "label": "button",
+            "placeholder": "",
+            "repeat": false,
+            "select": null
+          },
+          "type": "Link"
         }
       },
-      "items": {}
+      "version": "initial"
     },
     {
-      "id": "video",
-      "name": "video",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "video",
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
+      "items": {},
+      "name": "video",
       "primary": {
         "title": {
-          "type": "Text",
           "config": {
             "label": "title",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "subtitle": {
-          "type": "Text",
           "config": {
             "label": "subtitle",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "video": {
-          "type": "Link",
           "config": {
+            "allowText": true,
             "label": "video",
             "placeholder": "",
-            "select": "media",
-            "allowText": true
-          }
+            "select": "media"
+          },
+          "type": "Link"
         }
       },
-      "items": {}
+      "version": "initial"
     },
     {
-      "id": "internal",
-      "name": "internal",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "internal",
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
+      "items": {},
+      "name": "internal",
       "primary": {},
-      "items": {}
+      "version": "initial"
     }
   ]
 }
