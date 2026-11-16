@@ -9,11 +9,8 @@ import { getMenuItems } from '@/components/Utils/MenuItems';
 
 export const dynamicParams = false;
 
-export default async function Page({
-  params: { uid, lang },
-}: {
-  params: { uid: string; lang: string };
-}) {
+export default async function Page({ params }: { params: Promise<{ uid: string; lang: string }> }) {
+  const { uid, lang } = await params;
   // console.log('##### competition #####', lang);
   const client = createClient();
   const page = await client

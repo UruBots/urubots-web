@@ -1,6 +1,6 @@
 import * as prismic from '@prismicio/client';
 import * as prismicNext from '@prismicio/next';
-import config from '../slicemachine.config.json';
+import config from '../prismic.config.json';
 import { routes } from '@/lib/prismicRoutes';
 
 /**

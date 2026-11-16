@@ -4,7 +4,7 @@ import { createClient } from '@prismicio/client';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { readFile } from 'node:fs/promises';
 
-const { repositoryName } = JSON.parse(await readFile(new URL('../slicemachine.config.json', import.meta.url), 'utf8'));
+const { repositoryName } = JSON.parse(await readFile(new URL('../prismic.config.json', import.meta.url), 'utf8'));
 const out = process.argv[2] ?? `backups/prismic-${new Date().toISOString().slice(0, 10)}`;
 const client = createClient(repositoryName, { accessToken: process.env.PRISMIC_ACCESS_TOKEN });
 

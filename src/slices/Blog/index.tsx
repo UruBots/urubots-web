@@ -11,7 +11,7 @@ export type BlogProps = SliceComponentProps<Content.BlogSlice>;
 /**
  * Component for "Blog" Slices.
  */
-const Blog = ({ slice }: BlogProps): JSX.Element => {
+const Blog = ({ slice }: BlogProps): React.JSX.Element => {
   return (
     <section
       data-slice-type={slice.slice_type}

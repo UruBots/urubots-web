@@ -1,56 +1,60 @@
 {
-  "id": "landing",
-  "type": "SharedSlice",
-  "name": "Landing",
   "description": "Landing",
+  "id": "landing",
+  "name": "Landing",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/urubots/shared-slices/landing/default/e4f106dee212f01c036d349e337c0edd7d1b1cec.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "title": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "title",
             "placeholder": "",
-            "allowTargetBlank": true,
             "single": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong,em"
-          }
+          },
+          "type": "StructuredText"
         },
         "logo": {
-          "type": "Image",
-          "config": { "label": "logo", "constraint": {}, "thumbnails": [] }
+          "config": {
+            "constraint": {},
+            "label": "logo",
+            "thumbnails": []
+          },
+          "type": "Image"
         },
         "social_youtube": {
-          "type": "Link",
           "config": {
             "label": "social_youtube",
             "placeholder": "",
             "select": null
-          }
+          },
+          "type": "Link"
         },
         "social_instagram": {
-          "type": "Link",
           "config": {
             "label": "social_instagram",
             "placeholder": "",
             "select": null
-          }
+          },
+          "type": "Link"
         },
         "social_linkedin": {
-          "type": "Link",
           "config": {
             "label": "social_linkedin",
             "placeholder": "",
             "select": null
-          }
+          },
+          "type": "Link"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }

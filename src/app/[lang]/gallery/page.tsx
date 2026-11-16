@@ -20,11 +20,8 @@ export const dynamicParams = false;
 //     };
 // }
 
-export default async function Page({
-  params: { lang, uid },
-}: {
-  params: { lang: string; uid: string };
-}) {
+export default async function Page({ params }: { params: Promise<{ lang: string; uid: string }> }) {
+  const { lang, uid } = await params;
   // console.log('#### gallery ###', uid, lang);
   const client = createClient();
   const page = await client

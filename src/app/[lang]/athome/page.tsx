@@ -19,7 +19,8 @@ export const metadata: Metadata = {
     'UruBots (UTEC, Uruguay) application to the RoboCup@Home Open Platform League 2027 with the Base@Home service robot.',
 };
 
-export default async function Page({ params: { lang } }: { params: { lang: string } }) {
+export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
   const client = createClient();
   // Header needs a Prismic document to build the language switcher; reuse the homepage.
   const home = await client.getByUID('homepage', 'homepage', { lang }).catch(() => notFound());

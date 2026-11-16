@@ -24,7 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function Page({params: { lang, uid } }: { params: { lang: string; uid: string }; }) {
+export default async function Page({ params }: { params: Promise<{ lang: string; uid: string }> }) {
+  const { lang, uid } = await params;
     const client = createClient();
     const page = await client
         .getByUID('donations', 'donations', { lang })

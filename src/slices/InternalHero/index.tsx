@@ -10,7 +10,7 @@ export type InternalHeroProps = SliceComponentProps<Content.InternalHeroSlice>;
 /**
  * Component for "InternalHero" Slices.
  */
-const InternalHero = ({ slice }: InternalHeroProps): JSX.Element => {
+const InternalHero = ({ slice }: InternalHeroProps): React.JSX.Element => {
   return (
     <section
       data-slice-type={slice.slice_type}

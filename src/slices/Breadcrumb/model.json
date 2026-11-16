@@ -1,16 +1,16 @@
 {
-  "id": "breadcrumb",
-  "type": "SharedSlice",
-  "name": "Breadcrumb",
   "description": "Breadcrumb",
+  "id": "breadcrumb",
+  "name": "Breadcrumb",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": ""
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
+      "name": "Default",
+      "version": "initial"
     }
   ]
 }
