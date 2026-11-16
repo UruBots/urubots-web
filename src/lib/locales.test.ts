@@ -22,3 +22,28 @@ describe('locales', () => {
     expect(ensureLocalePrefix('/es-ar', 'es-ar')).toBe('/es-ar');
   });
 });
+
+import { shouldLocalize } from './locales';
+import { routes } from '@/lib/prismicRoutes';
+
+describe('shouldLocalize', () => {
+  it('rewrites page paths without a locale', () => {
+    expect(shouldLocalize('/')).toBe(true);
+    expect(shouldLocalize('/about')).toBe(true);
+  });
+
+  it('leaves locale-prefixed paths, files and internals alone', () => {
+    expect(shouldLocalize('/en-us/about')).toBe(false);
+    expect(shouldLocalize('/images/athome/robot.jpg')).toBe(false);
+    expect(shouldLocalize('/docs/tdp-2027.pdf')).toBe(false);
+    expect(shouldLocalize('/favicon.ico')).toBe(false);
+    expect(shouldLocalize('/_next/image')).toBe(false);
+    expect(shouldLocalize('/api/send')).toBe(false);
+  });
+});
+
+describe('prismic routes', () => {
+  it('always carry an explicit locale segment', () => {
+    for (const r of (routes ?? []) as { type: string; path: string }[]) expect(r.path, r.type).not.toContain(':lang?');
+  });
+});

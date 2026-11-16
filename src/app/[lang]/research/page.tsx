@@ -36,7 +36,11 @@ export default async function Page({params: { lang, uid } }: { params: { lang: s
 
     return (
         <Layout locales={locales} navigation={navigation}>
-            <SliceZone slices={page.data.slices} components={components} />
+            {/* Legacy list slice is superseded by PublicationsList (it carried a crossed arXiv link). */}
+            <SliceZone
+                slices={page.data.slices.filter((s: any) => s.slice_type !== 'research_publications')}
+                components={components}
+            />
             <PublicationsList lang={lang} />
         </Layout>
     );
