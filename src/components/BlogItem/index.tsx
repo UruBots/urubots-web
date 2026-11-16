@@ -1,8 +1,14 @@
 import {PrismicImage, PrismicRichText} from "@prismicio/react";
 import Image from "next/image";
+import {isFilled} from "@prismicio/client";
+import {youtubeEmbedUrl} from "@/lib/youtube";
+import {formatPostDate} from "@/lib/press";
 
-export const BlogItem = ({slice}:any) => {
+export const BlogItem = ({slice, lang}:any) => {
     if(!slice) return null;
+    const sourceUrl = isFilled.link(slice.source_url) ? (slice.source_url as any).url : null;
+    const embed = isFilled.link(slice.video_url) ? youtubeEmbedUrl((slice.video_url as any).url) : null;
+    const date = formatPostDate(slice.publication_date, lang);
 
     return (
         <section className="pb-[120px] pt-[150px]">
@@ -15,15 +21,31 @@ export const BlogItem = ({slice}:any) => {
                         </h1>
                         <div
                             className="mb-10 flex flex-wrap items-center justify-between border-b border-stroke pb-4 dark:border-stroke-dark">
-                            <div className="flex flex-wrap items-center">
+                            <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                                {slice.source_name && <span className="font-medium">{slice.source_name}</span>}
+                                {slice.source_name && date && <span aria-hidden="true">·</span>}
+                                {date && <time dateTime={slice.publication_date}>{date}</time>}
                             </div>
                         </div>
                         <div>
-                            <div className="mb-10 w-full overflow-hidden rounded-sm">
-                                <div className="relative aspect-[97/60] w-full sm:aspect-[97/44]">
-                                    <PrismicImage field={slice.image}/>
+                            {embed ? (
+                                <div className="mb-10 aspect-video w-full overflow-hidden rounded-sm">
+                                    <iframe
+                                        className="h-full w-full"
+                                        src={embed}
+                                        title={slice.title}
+                                        loading="lazy"
+                                        allow="encrypted-media; picture-in-picture; web-share"
+                                        allowFullScreen
+                                    />
                                 </div>
-                            </div>
+                            ) : isFilled.image(slice.image) && (
+                                <div className="mb-10 w-full overflow-hidden rounded-sm">
+                                    <div className="relative aspect-[97/60] w-full sm:aspect-[97/44]">
+                                        <PrismicImage field={slice.image}/>
+                                    </div>
+                                </div>
+                            )}
                             <div className="blog-details mb-12 text-black dark:text-neutral-100 text-lg">
                                 <PrismicRichText field={slice.content} components={{
                                     paragraph: ({ children }) => (
@@ -49,6 +71,18 @@ export const BlogItem = ({slice}:any) => {
                                     },
                                 }}/>
                             </div>
+                            {sourceUrl && slice.source_label && (
+                                <p className="mb-12">
+                                    <a
+                                        href={sourceUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-block rounded bg-blue-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500"
+                                    >
+                                        {slice.source_label}
+                                    </a>
+                                </p>
+                            )}
                             {/*<div className="items-center justify-between sm:flex">*/}
                             {/*    <div className="mb-5"><h5*/}
                             {/*        className="mb-3 text-sm font-medium text-body-color dark:text-body-color-dark sm:text-right">Share*/}

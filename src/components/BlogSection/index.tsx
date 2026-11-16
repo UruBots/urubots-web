@@ -1,6 +1,7 @@
 "use client";
 import {useState, useEffect} from "react";
 import {createClient} from "@/prismicio";
+import {sortByPublication, formatPostDate} from "@/lib/press";
 import {PrismicImage, PrismicRichText} from "@prismicio/react";
 import Link from "next/link";
 import {useParams} from 'next/navigation'
@@ -23,7 +24,7 @@ export const BlogSection = ({slice}: any) => {
             if (!posts) {
                 return null;
             }
-            const filteredPosts = posts.filter((post: any) => post.lang == lang);
+            const filteredPosts = sortByPublication(posts.filter((post: any) => post.lang == lang));
             setPosts(filteredPosts);
         };
         fetchData();
@@ -39,10 +40,17 @@ export const BlogSection = ({slice}: any) => {
                                 <Link href={`/${lang}/blog/${post.uid}`}>
                                     <div
                                         className="group relative overflow-hidden rounded-sm bg-white shadow-one duration-300 hover:shadow-two dark:bg-gray-900 dark:hover:shadow-gray-dark">
-                                        <div className="relative block aspect-[37/22] w-full overflow-hidden h-[220px]">
-                                            <PrismicImage field={post.data.image} />
-                                        </div>
+                                        {post.data.image?.url && (
+                                            <div className="relative block aspect-[37/22] w-full overflow-hidden h-[220px]">
+                                                <PrismicImage field={post.data.image} />
+                                            </div>
+                                        )}
                                         <div className="p-6 sm:p-8 md:px-6 md:py-8 lg:p-8 xl:px-5 xl:py-8 2xl:p-8">
+                                            {(post.data.source_name || post.data.publication_date) && (
+                                                <p className="mb-2 text-sm text-gray-600 dark:text-gray-300">
+                                                    {[post.data.source_name, formatPostDate(post.data.publication_date, lang as string)].filter(Boolean).join(' · ')}
+                                                </p>
+                                            )}
                                             <h3 className="mb-4 block text-xl font-bold text-black duration-300 hover:text-primary dark:text-white dark:hover:text-primary sm:text-[22px]">
                                                 { post.data.title }
                                             </h3>

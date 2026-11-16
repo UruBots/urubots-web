@@ -12,5 +12,8 @@ export function youtubeEmbedUrl(url: string | null): string | null {
   else if (host === 'youtube.com') {
     id = u.pathname.startsWith('/embed/') ? u.pathname.slice('/embed/'.length) : u.searchParams.get('v');
   }
-  return id && /^[\w-]+$/.test(id) ? `https://www.youtube.com/embed/${id}` : null;
+  if (!id || !/^[\w-]+$/.test(id)) return null;
+  const raw = u.searchParams.get('start') ?? u.searchParams.get('t');
+  const start = raw && /^\d+s?$/.test(raw) ? parseInt(raw, 10) : null;
+  return `https://www.youtube.com/embed/${id}${start ? `?start=${start}` : ''}`;
 }

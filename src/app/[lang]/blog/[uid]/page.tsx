@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: Promise<{ uid: string; 
     return (
         <Layout locales={locales} navigation={navigation}>
             {/*<SliceZone slices={page.data.slices} components={components}/>*/}
-            <BlogItem slice={page.data} />
+            <BlogItem slice={page.data} lang={lang} />
         </Layout>
     );
 }

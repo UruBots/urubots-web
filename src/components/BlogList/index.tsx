@@ -3,6 +3,7 @@ import {useState, useEffect} from "react";
 import {SectionTitle} from "@/components/Common/SectionTitle";
 import {SingleBlog} from "@/components/SingleBlog";
 import {createClient} from "@/prismicio";
+import {sortByPublication} from "@/lib/press";
 import {isFilled} from "@prismicio/client";
 import {useParams} from 'next/navigation'
 
@@ -23,7 +24,7 @@ export const BlogList = ({slice}: any) => {
             if (!posts) {
                 return null;
             }
-            const filteredPosts = posts.filter((post: any) => post.lang == lang);
+            const filteredPosts = sortByPublication(posts.filter((post: any) => post.lang == lang));
             setPosts(filteredPosts);
         };
         fetchData();
