@@ -1,20 +1,18 @@
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { createClient } from "@/prismicio";
-import { fromPrismic } from "@/lib/publications";
-import { DEFAULT_LOCALE } from "@/lib/locales";
+import { getPublications } from "@/lib/publications";
 import { PublicationsList } from "@/components/PublicationsList";
 
 export type ResearchPublicationsProps = SliceComponentProps<Content.ResearchPublicationsSlice>;
 
 /**
- * Lists every `publication` document (English master copy). UI texts come from
+ * Lists the `publication` documents of the page's locale (English copy as fallback). UI texts come from
  * this slice's fields, which editors translate per locale in the research page.
  */
-const ResearchPublications = async ({ slice }: ResearchPublicationsProps) => {
+const ResearchPublications = async ({ slice, context }: ResearchPublicationsProps) => {
   const client = createClient();
-  const docs = await client.getAllByType("publication", { lang: DEFAULT_LOCALE });
-  const publications = docs.map(fromPrismic);
+  const publications = await getPublications(client, (context as { lang?: string })?.lang);
   const p = slice.primary;
 
   return (

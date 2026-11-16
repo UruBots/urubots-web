@@ -61,3 +61,34 @@ describe('fromPrismic', () => {
     expect(fromPrismic(doc({ ...full, authors: 'A; ; B;' })).authors).toEqual(['A', 'B']);
   });
 });
+
+import { getPublications } from './publications';
+
+const stub = (byLang: Record<string, any[]>) => ({
+  calls: [] as string[],
+  async getAllByType(_type: string, params: { lang: string }) {
+    this.calls.push(params.lang);
+    return byLang[params.lang] ?? [];
+  },
+});
+
+describe('getPublications', () => {
+  it('returns the publications of the requested locale', async () => {
+    const c = stub({ 'es-ar': [doc(full, 'a')], 'en-us': [doc(full, 'b'), doc(full, 'c')] });
+    const out = await getPublications(c as any, 'es-ar');
+    expect(out.map((p) => p.id)).toEqual(['a']);
+  });
+
+  it('falls back to en-us when the locale has none', async () => {
+    const c = stub({ 'en-us': [doc(full, 'b')] });
+    const out = await getPublications(c as any, 'pt-br');
+    expect(out.map((p) => p.id)).toEqual(['b']);
+    expect(c.calls).toEqual(['pt-br', 'en-us']);
+  });
+
+  it('defaults to en-us without a locale', async () => {
+    const c = stub({ 'en-us': [doc(full, 'b')] });
+    expect((await getPublications(c as any, undefined)).length).toBe(1);
+    expect(c.calls).toEqual(['en-us']);
+  });
+});

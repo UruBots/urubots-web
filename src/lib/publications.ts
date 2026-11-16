@@ -49,3 +49,18 @@ export function fromPrismic(doc: {
     bibtexKey: text(d.bibtex_key),
   };
 }
+
+const FALLBACK_LOCALE = 'en-us';
+
+/** Publications for a locale, falling back to the English master copy when that locale has none. */
+export async function getPublications(
+  client: { getAllByType: (type: 'publication', params: { lang: string }) => Promise<any[]> },
+  lang: string | undefined,
+): Promise<Publication[]> {
+  const wanted = lang ?? FALLBACK_LOCALE;
+  let docs = await client.getAllByType('publication', { lang: wanted });
+  if (docs.length === 0 && wanted !== FALLBACK_LOCALE) {
+    docs = await client.getAllByType('publication', { lang: FALLBACK_LOCALE });
+  }
+  return docs.map(fromPrismic);
+}

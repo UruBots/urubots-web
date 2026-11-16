@@ -52,21 +52,23 @@ if (apply && !writeToken) throw new Error('PRISMIC_WRITE_TOKEN is required with 
 const client = prismic.createWriteClient(repositoryName, { writeToken: writeToken ?? 'dry-run' });
 
 const researchDocs = await client.getAllByType('research', { lang: '*' });
-console.log(`${seedPublications.length} publications + ${researchDocs.length} research docs to migrate${apply ? '' : ' (dry run, nothing sent)'}.`);
+console.log(`${seedPublications.length} publications x 3 locales + ${researchDocs.length} research docs to migrate${apply ? '' : ' (dry run, nothing sent)'}.`);
 if (!apply) process.exit(0);
 
 // One migration per document so a re-run skips what already exists (UID conflicts).
 let created = 0;
 let skipped = 0;
-for (const p of seedPublications) {
-  const migration = prismic.createMigration();
-  migration.createDocument(toPrismicDocument(p) as any, p.title);
-  try {
-    await client.migrate(migration);
-    created++;
-  } catch (e: any) {
-    if (String(e?.response?.message ?? e?.message).includes('already exists')) skipped++;
-    else throw e;
+for (const lang of ['en-us', 'es-ar', 'pt-br'] as const) {
+  for (const p of seedPublications) {
+    const migration = prismic.createMigration();
+    migration.createDocument(toPrismicDocument(p, lang) as any, p.title);
+    try {
+      await client.migrate(migration);
+      created++;
+    } catch (e: any) {
+      if (String(e?.response?.message ?? e?.message).includes('already exists')) skipped++;
+      else throw e;
+    }
   }
 }
 console.log(`publications: ${created} created, ${skipped} already existed`);
