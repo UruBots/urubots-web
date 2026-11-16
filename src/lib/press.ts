@@ -17,3 +17,20 @@ export function formatPostDate(iso: string | null | undefined, lang: string): st
   if (Number.isNaN(d.getTime())) return '';
   return new Intl.DateTimeFormat(lang, { dateStyle: 'long', timeZone: 'UTC' }).format(d);
 }
+
+type ImageDoc = { uid?: string | null; lang: string; data: { image?: { url?: string | null } | null } };
+
+/**
+ * Posts of one locale; when a post has no cover image, reuse the image of the same post (same uid)
+ * in another locale, so translated copies stay consistent. Returns new objects, input untouched.
+ */
+export function withFallbackImages<T extends ImageDoc>(all: T[], lang: string): T[] {
+  const imageByUid = new Map<string, unknown>();
+  for (const d of all) if (d.uid && d.data.image?.url && !imageByUid.has(d.uid)) imageByUid.set(d.uid, d.data.image);
+  return all
+    .filter((d) => d.lang === lang)
+    .map((d) => {
+      if (d.data.image?.url || !d.uid || !imageByUid.has(d.uid)) return d;
+      return { ...d, data: { ...d.data, image: imageByUid.get(d.uid) } } as T;
+    });
+}

@@ -1,7 +1,7 @@
 "use client";
 import {useState, useEffect} from "react";
 import {createClient} from "@/prismicio";
-import {sortByPublication, formatPostDate} from "@/lib/press";
+import {sortByPublication, formatPostDate, withFallbackImages} from "@/lib/press";
 import {PrismicImage, PrismicRichText} from "@prismicio/react";
 import Link from "next/link";
 import {useParams} from 'next/navigation'
@@ -24,7 +24,7 @@ export const BlogSection = ({slice}: any) => {
             if (!posts) {
                 return null;
             }
-            const filteredPosts = sortByPublication(posts.filter((post: any) => post.lang == lang));
+            const filteredPosts = sortByPublication(withFallbackImages(posts, lang as string));
             setPosts(filteredPosts);
         };
         fetchData();

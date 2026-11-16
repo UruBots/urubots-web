@@ -39,3 +39,31 @@ describe('postDate / sortByPublication', () => {
     expect(docs.map((d) => d.id)).toEqual(['a', 'b']);
   });
 });
+
+import { withFallbackImages } from './press';
+
+const img = (url: string | null) => (url ? { url, dimensions: { width: 10, height: 10 } } : {});
+const doc2 = (uid: string, lang: string, url: string | null) => ({ uid, lang, data: { image: img(url), title: `${uid}-${lang}` } }) as any;
+
+describe('withFallbackImages', () => {
+  it('fills a missing image from the same uid in another locale', () => {
+    const all = [doc2('p1', 'es-ar', 'https://x/es.jpg'), doc2('p1', 'en-us', null), doc2('p1', 'pt-br', null)];
+    const en = withFallbackImages(all, 'en-us');
+    expect(en).toHaveLength(1);
+    expect(en[0].data.image.url).toBe('https://x/es.jpg');
+    expect(en[0].lang).toBe('en-us');
+    expect(en[0].data.title).toBe('p1-en-us');
+  });
+
+  it('keeps the own image when there is one', () => {
+    const all = [doc2('p1', 'es-ar', 'https://x/es.jpg'), doc2('p1', 'en-us', 'https://x/en.jpg')];
+    expect(withFallbackImages(all, 'en-us')[0].data.image.url).toBe('https://x/en.jpg');
+  });
+
+  it('leaves the image empty when no locale has one and never mutates input', () => {
+    const all = [doc2('p2', 'en-us', null)];
+    const out = withFallbackImages(all, 'en-us');
+    expect(out[0].data.image.url).toBeUndefined();
+    expect(all[0].data.image).toEqual({});
+  });
+});

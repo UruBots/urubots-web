@@ -58,9 +58,11 @@ export async function getPublications(
   lang: string | undefined,
 ): Promise<Publication[]> {
   const wanted = lang ?? FALLBACK_LOCALE;
-  let docs = await client.getAllByType('publication', { lang: wanted });
+  // Interrupted imports can leave empty published shells (no title); they are never shown.
+  const usable = (docs: any[]) => docs.filter((d) => typeof d.data?.title === 'string' && d.data.title.trim());
+  let docs = usable(await client.getAllByType('publication', { lang: wanted }));
   if (docs.length === 0 && wanted !== FALLBACK_LOCALE) {
-    docs = await client.getAllByType('publication', { lang: FALLBACK_LOCALE });
+    docs = usable(await client.getAllByType('publication', { lang: FALLBACK_LOCALE }));
   }
   return docs.map(fromPrismic);
 }

@@ -92,3 +92,17 @@ describe('getPublications', () => {
     expect(c.calls).toEqual(['en-us']);
   });
 });
+
+describe('getPublications ignores empty shells', () => {
+  it('drops documents without a title (left behind by interrupted imports)', async () => {
+    const shell = doc({ ...full, title: null }, 'shell');
+    const c = stub({ 'en-us': [shell, doc(full, 'ok')] });
+    const out = await getPublications(c as any, 'en-us');
+    expect(out.map((p) => p.id)).toEqual(['ok']);
+  });
+
+  it('falls back to en-us when every document of the locale is an empty shell', async () => {
+    const c = stub({ 'pt-br': [doc({ ...full, title: '' }, 'shell')], 'en-us': [doc(full, 'ok')] });
+    expect((await getPublications(c as any, 'pt-br')).map((p) => p.id)).toEqual(['ok']);
+  });
+});
