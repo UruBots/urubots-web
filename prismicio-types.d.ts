@@ -285,7 +285,74 @@ interface BlogpostDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/slices
 	 */
-	slices: prismic.SliceZone<BlogpostDocumentDataSlicesSlice>;/**
+	slices: prismic.SliceZone<BlogpostDocumentDataSlicesSlice>;
+	
+	/**
+	 * Post kind field in *blogpost*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: news
+	 * - **API ID Path**: blogpost.post_kind
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	post_kind: prismic.SelectField<"news" | "press", "filled">;
+	
+	/**
+	 * Source name (outlet) field in *blogpost*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blogpost.source_name
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	source_name: prismic.KeyTextField;
+	
+	/**
+	 * Source link (original article/audio) field in *blogpost*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blogpost.source_url
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	source_url: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Source button text field in *blogpost*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blogpost.source_label
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	source_label: prismic.KeyTextField;
+	
+	/**
+	 * Publication date (real date of the piece) field in *blogpost*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blogpost.publication_date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/date
+	 */
+	publication_date: prismic.DateField;
+	
+	/**
+	 * Video link (YouTube) field in *blogpost*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blogpost.video_url
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	video_url: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;/**
 	 * Meta Title field in *blogpost*
 	 *
 	 * - **Field Type**: Text
