@@ -1,0 +1,7 @@
+{
+  "repositoryName": "urubots",
+  "libraries": [
+    "./src/slices"
+  ],
+  "routes": []
+}

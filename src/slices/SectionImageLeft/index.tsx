@@ -11,7 +11,7 @@ export type SectionImageLeftProps =
 /**
  * Component for "SectionImageLeft" Slices.
  */
-const SectionImageLeft = ({ slice }: SectionImageLeftProps): JSX.Element => {
+const SectionImageLeft = ({ slice }: SectionImageLeftProps): React.JSX.Element => {
   return (
     <section
       data-slice-type={slice.slice_type}

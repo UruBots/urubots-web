@@ -11,6 +11,7 @@
  * @returns {Promise<(import("@prismicio/types").PrismicDocument & { lang_name: string })[]>}
  */
 import { Client, PrismicDocument } from '@prismicio/client';
+import { ensureLocalePrefix } from '@/lib/locales';
 
 export async function getLocales(
   doc: PrismicDocument,
@@ -34,6 +35,7 @@ export async function getLocales(
     const { languages } = repository;
     return {
       ...doc,
+      url: doc.url ? ensureLocalePrefix(doc.url, doc.lang) : doc.url,
       // @ts-ignore
       lang_name: languages.find((lang) => lang.id === doc.lang).name,
     };

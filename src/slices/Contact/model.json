@@ -1,75 +1,75 @@
 {
-  "id": "contact",
-  "type": "SharedSlice",
-  "name": "Contact",
   "description": "Contact",
+  "id": "contact",
+  "name": "Contact",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
+      "items": {},
+      "name": "Default",
       "primary": {
         "information_title": {
-          "type": "Text",
           "config": {
             "label": "information_title",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "information_subtitle": {
-          "type": "Text",
           "config": {
             "label": "information_subtitle",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "information_email": {
-          "type": "Text",
           "config": {
             "label": "information_email",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "information_phone": {
-          "type": "Text",
           "config": {
             "label": "information_phone",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "information_address": {
-          "type": "Text",
           "config": {
             "label": "information_address",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "contact_title": {
-          "type": "Text",
           "config": {
             "label": "contact_title",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "contact_subtitle": {
-          "type": "Text",
           "config": {
             "label": "contact_subtitle",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "contact_button_text": {
-          "type": "Text",
           "config": {
             "label": "contact_button_text",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }

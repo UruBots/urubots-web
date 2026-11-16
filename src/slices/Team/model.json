@@ -1,75 +1,75 @@
 {
-  "id": "team",
-  "type": "SharedSlice",
-  "name": "Team",
   "description": "Team",
+  "id": "team",
+  "name": "Team",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
+      "items": {},
+      "name": "Default",
       "primary": {
         "title": {
-          "type": "Text",
           "config": {
             "label": "title",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "subtitle": {
-          "type": "Text",
           "config": {
             "label": "subtitle",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "members": {
-          "type": "Group",
           "config": {
-            "label": "members",
-            "repeat": true,
             "fields": {
               "name": {
-                "type": "Text",
                 "config": {
                   "label": "name",
                   "placeholder": ""
-                }
+                },
+                "type": "Text"
               },
               "image": {
-                "type": "Image",
                 "config": {
-                  "label": "image",
                   "constraint": {},
+                  "label": "image",
                   "thumbnails": []
-                }
+                },
+                "type": "Image"
               },
               "position": {
-                "type": "Text",
                 "config": {
                   "label": "position",
                   "placeholder": ""
-                }
+                },
+                "type": "Text"
               },
               "linkedin": {
-                "type": "Link",
                 "config": {
-                  "label": "linkedin",
-                  "placeholder": "",
-                  "select": null,
                   "allowTargetBlank": true,
                   "allowText": true,
-                  "repeat": false
-                }
+                  "label": "linkedin",
+                  "placeholder": "",
+                  "repeat": false,
+                  "select": null
+                },
+                "type": "Link"
               }
-            }
-          }
+            },
+            "label": "members",
+            "repeat": true
+          },
+          "type": "Group"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }

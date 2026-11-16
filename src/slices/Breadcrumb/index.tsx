@@ -10,7 +10,7 @@ export type BreadcrumbProps = SliceComponentProps<Content.BreadcrumbSlice>;
 /**
  * Component for "Breadcrumb" Slices.
  */
-const Breadcrumb = ({ slice }: BreadcrumbProps): JSX.Element => {
+const Breadcrumb = ({ slice }: BreadcrumbProps): React.JSX.Element => {
   return (
     <section
       data-slice-type={slice.slice_type}

@@ -10,7 +10,7 @@ export type LandingProps = SliceComponentProps<Content.LandingSlice>;
 /**
  * Component for "Landing" Slices.
  */
-const Landing = ({ slice }: LandingProps): JSX.Element => {
+const Landing = ({ slice }: LandingProps): React.JSX.Element => {
   return (
     <section
       data-slice-type={slice.slice_type}
