@@ -9,6 +9,10 @@ describe('publications dataset', () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
+  it('ids are valid Prismic UIDs (lowercase, no spaces)', () => {
+    for (const p of publications) expect(p.id, p.id).toMatch(/^[a-z0-9._-]+$/);
+  });
+
   it('arxiv ids are unique', () => {
     const ids = publications.filter((p) => p.arxiv).map((p) => p.arxiv);
     expect(new Set(ids).size).toBe(ids.length);

@@ -1,0 +1,62 @@
+// For format details, see https://aka.ms/devcontainer.json
+{
+  "name": "Urubots Web",
+
+  // Node 22 matches the `engines` field in package.json
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22-bookworm",
+
+  // Next.js dev server, Storybook, and Prismic Slice Machine
+  "forwardPorts": [3000, 6006, 9999],
+  "portsAttributes": {
+    "3000": {
+      "label": "Next.js",
+      "onAutoForward": "notify"
+    },
+    "6006": {
+      "label": "Storybook",
+      "onAutoForward": "notify"
+    },
+    "9999": {
+      "label": "Slice Machine",
+      "onAutoForward": "notify"
+    }
+  },
+
+  // Persist dependencies across container rebuilds
+  "mounts": [
+    {
+      "source": "${containerWorkspaceFolderBasename}-node_modules",
+      "target": "${containerWorkspaceFolder}/node_modules",
+      "type": "volume"
+    }
+  ],
+
+  "postCreateCommand": [
+    "npm install",
+    "npm install -g @opencode/cli",
+    "[ -f .env.local ] || cp .env.example .env.local",
+    "git config --global url.'git@github.com:'.insteadOf 'https://github.com/'"
+  ],
+
+  // Warn if the SSH agent was not forwarded (git push over SSH won't work)
+  "postStartCommand": "ssh-add -l >/dev/null 2>&1 && echo 'SSH agent forwarded' || echo 'WARNING: no SSH key forwarded. Run \"ssh-add\" on your host and reload the window.'",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "styled-components.vscode-styled-components"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "typescript.tsdk": "node_modules/typescript/lib"
+      }
+    }
+  }
+}

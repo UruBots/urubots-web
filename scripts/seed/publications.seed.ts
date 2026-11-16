@@ -4,7 +4,7 @@ type Source = Omit<Publication, 'id' | 'pdf'> & { pdf?: string | null };
 
 const build = (s: Source): Publication => ({
   ...s,
-  id: s.arxiv ? `arxiv-${s.arxiv}` : `doi-${(s.doi ?? '').replace(/^https?:\/\/doi\.org\//, '').replace(/[^\w.]+/g, '-')}`,
+  id: (s.arxiv ? `arxiv-${s.arxiv}` : `doi-${(s.doi ?? '').replace(/^https?:\/\/doi\.org\//, '').replace(/[^\w.]+/g, '-')}`).toLowerCase(),
   pdf: s.pdf !== undefined ? s.pdf : s.arxiv ? `https://arxiv.org/pdf/${s.arxiv}` : null,
 });
 

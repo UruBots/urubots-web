@@ -50,25 +50,34 @@ const writeToken = process.env.PRISMIC_WRITE_TOKEN;
 if (apply && !writeToken) throw new Error('PRISMIC_WRITE_TOKEN is required with --apply');
 
 const client = prismic.createWriteClient(repositoryName, { writeToken: writeToken ?? 'dry-run' });
-const migration = prismic.createMigration();
-
-for (const p of seedPublications) {
-  migration.createDocument(toPrismicDocument(p) as any, p.title);
-}
 
 const researchDocs = await client.getAllByType('research', { lang: '*' });
+console.log(`${seedPublications.length} publications + ${researchDocs.length} research docs to migrate${apply ? '' : ' (dry run, nothing sent)'}.`);
+if (!apply) process.exit(0);
+
+// One migration per document so a re-run skips what already exists (UID conflicts).
+let created = 0;
+let skipped = 0;
+for (const p of seedPublications) {
+  const migration = prismic.createMigration();
+  migration.createDocument(toPrismicDocument(p) as any, p.title);
+  try {
+    await client.migrate(migration);
+    created++;
+  } catch (e: any) {
+    if (String(e?.response?.message ?? e?.message).includes('already exists')) skipped++;
+    else throw e;
+  }
+}
+console.log(`publications: ${created} created, ${skipped} already existed`);
+
+const labelMigration = prismic.createMigration();
 for (const doc of researchDocs) {
   const labels = labelsByLocale[doc.lang];
-  if (!labels) continue;
-  const slices = (doc.data as any).slices as any[];
-  const slice = slices.find((s) => s.slice_type === 'research_publications');
-  if (!slice) continue;
+  const slice = ((doc.data as any).slices as any[]).find((s) => s.slice_type === 'research_publications');
+  if (!labels || !slice) continue;
   Object.assign(slice.primary, labels);
-  migration.updateDocument(doc as any);
+  labelMigration.updateDocument(doc as any);
 }
-
-console.log(`${seedPublications.length} publications + ${researchDocs.length} research docs to ${apply ? 'migrate' : 'migrate (dry run, nothing sent)'}.`);
-if (apply) {
-  await client.migrate(migration, { reporter: (e) => console.log(e.type) });
-  console.log('Done. Review and publish the migration release in the Prismic dashboard.');
-}
+await client.migrate(labelMigration);
+console.log('Done. Review and publish the migration release in the Prismic dashboard.');
