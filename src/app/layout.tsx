@@ -5,6 +5,7 @@ import { Providers } from '@/app/providers';
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { PrismicPreview } from '@prismicio/next';
 import { repositoryName } from '@/prismicio';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Providers>{children}</Providers>
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-XYZ"} />
         <PrismicPreview repositoryName={repositoryName} />
+        <Analytics />
       </body>
     </html>
   );
