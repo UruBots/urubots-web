@@ -34,8 +34,12 @@ for (const lang of LOCALES) {
     try {
       await client.migrate(migration);
       created++;
+      console.log(`created  ${lang}  ${item.id}`);
     } catch (e: any) {
-      if (String(e?.response?.message ?? e?.message).includes('already exists')) skipped++;
+      if (String(e?.response?.message ?? e?.message).includes('already exists')) {
+        skipped++;
+        console.log(`existing ${lang}  ${item.id}`);
+      }
       else throw e;
     }
   }
