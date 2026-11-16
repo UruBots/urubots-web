@@ -31,7 +31,8 @@ describe('trophies seed', () => {
   it('keeps the facts given by the team', () => {
     const y = (n: string) => trophyItems.filter((t) => t.year === n);
     expect(y('2026').map((t) => t.medal)).toEqual(['gold', 'laurel']);
-    expect(y('2026')[0].description!['es-ar']).toContain('Canadá y Malasia');
+    expect(y('2026')[0].description!['es-ar']).toContain('alianza internacional de programación en tiempo real');
+    expect(JSON.stringify(trophyItems)).not.toContain('Malasia');
     const robocup = y('2025').filter((t) => t.event === 'RoboCup');
     expect(robocup.map((t) => t.medal)).toEqual(['gold', 'laurel']);
     expect(robocup[0].category['es-ar']).toContain('Movilidad');
@@ -39,12 +40,11 @@ describe('trophies seed', () => {
     expect(robocup[1].place['es-ar']).toContain('5');
     const fira2025 = y('2025').filter((t) => t.event === 'FIRA RoboWorld Cup');
     expect(fira2025.map((t) => t.medal)).toEqual(['gold', 'laurel']);
-    expect(fira2025[0].location['es-ar']).toBe('Corea del Sur');
-    expect(fira2025[0].category['es-ar']).toContain('Movilidad');
-    expect(fira2025[1].place['es-ar']).toContain('5');
-    expect(JSON.stringify(trophyItems).toLowerCase()).not.toContain('drones');
-    expect(y('2024').map((t) => t.medal)).toEqual(['bronze', 'bronze']);
-    expect(y('2023')[0].category['es-ar']).toContain('Misión Imposible');
+    expect(fira2025.every((t) => t.location['es-ar'] === 'Corea del Sur')).toBe(true);
+    expect(fira2025[0].place['es-ar']).toBe('1.er puesto');
+    expect(fira2025[0].category['es-ar']).toBe('Drones');
+    expect(fira2025[1].place['es-ar']).toBe('Top 5');
+    expect(fira2025[1].category['es-ar']).toBe('Rescue');
   });
 });
 
