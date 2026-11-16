@@ -45,6 +45,15 @@ describe('press seed', () => {
     }
   });
 
+  it('every item has a cover image with https url, credit and alt text', () => {
+    for (const p of pressItems) {
+      expect(p.image, p.id).not.toBeNull();
+      expect(p.image!.url, p.id).toMatch(/^https:\/\//);
+      expect(p.image!.credit.length, p.id).toBeGreaterThan(2);
+      expect(p.image!.alt.length, p.id).toBeGreaterThan(5);
+    }
+  });
+
   it('does not repeat the facts that outlets got wrong', () => {
     const all = JSON.stringify(pressItems).toLowerCase();
     expect(all).not.toContain('16 equipos');

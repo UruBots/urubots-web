@@ -24,7 +24,13 @@ let skipped = 0;
 for (const lang of LOCALES) {
   for (const item of pressItems) {
     const migration = prismic.createMigration();
-    migration.createDocument(toBlogpostDocument(item, lang) as any, item.title[lang]);
+    const asset = item.image
+      ? migration.createAsset(item.image.url, `${item.id}.${item.image.url.split('.').pop()!.split('?')[0]}`, {
+          alt: item.image.alt,
+          credits: item.image.credit,
+        })
+      : undefined;
+    migration.createDocument(toBlogpostDocument(item, lang, asset) as any, item.title[lang]);
     try {
       await client.migrate(migration);
       created++;

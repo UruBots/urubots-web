@@ -16,6 +16,8 @@ export interface PressItem {
   sourceLabel: ByLocale;
   url: string;
   videoUrl: string | null;
+  /** Cover image to upload to the Prismic media library (rights confirmed by the team). */
+  image: { url: string; credit: string; alt: string } | null;
 }
 
 const readArticle = (outlet: string): ByLocale => ({
@@ -49,6 +51,7 @@ export const pressItems: PressItem[] = [
     sourceLabel: watchVideo('Canal 12'),
     url: 'https://www.youtube.com/watch?v=W9ftt5onYDs',
     videoUrl: 'https://www.youtube.com/watch?v=W9ftt5onYDs',
+    image: { url: 'https://i.ytimg.com/vi/W9ftt5onYDs/hqdefault.jpg', credit: 'Desayunos Informales (Canal 12)', alt: 'Video: Estudiantes de UTEC desarrollan robots de alta tecnología' },
   },
   {
     id: 'prensa-2026-06-08-fix-tv',
@@ -69,6 +72,7 @@ export const pressItems: PressItem[] = [
     sourceLabel: watchVideo('FIX TV'),
     url: 'https://www.youtube.com/watch?v=uHdOyfFDQwU',
     videoUrl: 'https://www.youtube.com/watch?v=uHdOyfFDQwU',
+    image: { url: 'https://i.ytimg.com/vi/uHdOyfFDQwU/hqdefault.jpg', credit: 'FIX TV', alt: 'Video: el equipo Urubots va por la gloria en el mundial de robótica' },
   },
   {
     id: 'prensa-2026-07-21-la-diaria',
@@ -89,6 +93,7 @@ export const pressItems: PressItem[] = [
     sourceLabel: readArticle('la diaria'),
     url: 'https://ladiaria.com.uy/futuro/articulo/2026/7/el-mini-tesla-uruguayo-gano-un-desafio-en-el-mundial-de-robotica-realizado-en-canada/',
     videoUrl: null,
+    image: { url: 'https://ladiaria.com.uy/media/photologue/photos/cache/urubots_700w.webp', credit: 'Urubots (publicada por la diaria)', alt: 'Equipo Urubots de UTEC Rivera' },
   },
   {
     id: 'prensa-2026-07-22-diario-norte',
@@ -109,6 +114,7 @@ export const pressItems: PressItem[] = [
     sourceLabel: readArticle('Diario NORTE'),
     url: 'https://diarionorte.com.uy/ensenanza/estudiantes-de-utec-ganan-prueba-de-cooperacion-entre-vehiculos-autonomos-en-mundial-de-robotica-77945.html',
     videoUrl: null,
+    image: { url: 'https://imagenes.montevideo.com.uy/imgnoticias/202608/_W933_80/967357.jpg', credit: 'UTEC (publicada por Montevideo Portal)', alt: 'Equipo Urubots que compitió en la FIRA RoboWorld Cup 2026 en Canadá' },
   },
   {
     id: 'prensa-2026-07-23-diario-norte',
@@ -129,6 +135,7 @@ export const pressItems: PressItem[] = [
     sourceLabel: readArticle('Diario NORTE'),
     url: 'https://diarionorte.com.uy/ensenanza/urubots-obtuvo-un-primer-puesto-en-canada-en-la-competencia-mundial-de-robotica-77979.html',
     videoUrl: null,
+    image: { url: 'https://imagenes.montevideo.com.uy/imgnoticias/202608/_W933_80/967357.jpg', credit: 'UTEC (publicada por Montevideo Portal)', alt: 'Equipo Urubots que compitió en la FIRA RoboWorld Cup 2026 en Canadá' },
   },
   {
     id: 'prensa-2026-07-25-telenoche',
@@ -149,6 +156,7 @@ export const pressItems: PressItem[] = [
     sourceLabel: readArticle('Telenoche'),
     url: 'https://www.telenoche.com.uy/ciencia-y-tecnologia/el-grupo-urubots-utec-obtuvo-el-primer-puesto-prueba-vehiculos-autonomos-canada-n5402584',
     videoUrl: null,
+    image: { url: 'https://media.telenoche.com.uy/p/f4d906a3530c02f2a8cbc956075686aa/adjuntos/329/imagenes/000/215/0000215992/790x0/smart/-2026-07-25t144215780.png', credit: 'Telenoche', alt: 'Equipo Urubots de la UTEC de Rivera' },
   },
   {
     id: 'prensa-2026-08-04-la-diaria-radio',
@@ -169,6 +177,7 @@ export const pressItems: PressItem[] = [
     sourceLabel: watchVideo('la diaria Radio'),
     url: 'https://www.youtube.com/watch?v=qezef09y3WY&t=401s',
     videoUrl: 'https://www.youtube.com/watch?v=qezef09y3WY&t=401s',
+    image: { url: 'https://i.ytimg.com/vi/qezef09y3WY/hqdefault.jpg', credit: 'la diaria Radio', alt: 'Video: la diaria Radio del martes 4 de agosto de 2026' },
   },
   {
     id: 'prensa-2026-08-13-montevideo-portal',
@@ -189,5 +198,6 @@ export const pressItems: PressItem[] = [
     sourceLabel: readArticle('Montevideo Portal'),
     url: 'https://www.montevideo.com.uy/18-capitales/Los-estudiantes-de-la-UTEC-de-Rivera-que-fueron-distinguidos-con-primer-premio-en-Canada-uc971626',
     videoUrl: null,
+    image: { url: 'https://imagenes.montevideo.com.uy/imgnoticias/202608/_W933_80/967356.jpg', credit: 'UTEC (publicada por Montevideo Portal)', alt: 'Santiago Fernández y Gabriel da Silva, estudiantes de UTEC Rivera' },
   },
 ];

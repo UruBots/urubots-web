@@ -45,4 +45,10 @@ describe('toBlogpostDocument', () => {
     expect(d.data.meta_title).toBe(laDiaria.title['es-ar']);
     expect(d.data.meta_description).toBe(laDiaria.summary['es-ar']);
   });
+
+  it('attaches the given image asset to the image field and leaves it out otherwise', () => {
+    const asset = { id: 'asset-1' } as any;
+    expect(toBlogpostDocument(laDiaria, 'es-ar', asset).data.image).toBe(asset);
+    expect('image' in toBlogpostDocument(laDiaria, 'es-ar').data).toBe(false);
+  });
 });

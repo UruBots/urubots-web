@@ -10,7 +10,7 @@ const ORIGINAL_HEADLINE: Record<PressLocale, string | null> = {
 };
 
 /** Migration API payload for the blogpost that presents one press item in one locale. */
-export function toBlogpostDocument(item: PressItem, lang: PressLocale) {
+export function toBlogpostDocument(item: PressItem, lang: PressLocale, image?: unknown) {
   const summary = item.summary[lang];
   const prefix = ORIGINAL_HEADLINE[lang];
   const content = [block(summary)];
@@ -22,6 +22,7 @@ export function toBlogpostDocument(item: PressItem, lang: PressLocale) {
     uid: item.id,
     data: {
       title: item.title[lang],
+      ...(image ? { image } : {}),
       paragraph: [block(summary)],
       content,
       post_kind: 'press',
