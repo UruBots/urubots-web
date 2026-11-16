@@ -8,6 +8,7 @@ import { LOCALES } from '@/lib/locales';
 import { QualificationMaterials } from '@/components/AtHome/QualificationMaterials';
 import { RobotGallery } from '@/components/AtHome/RobotGallery';
 import { PlatformSummary } from '@/components/AtHome/PlatformSummary';
+import { TeamRoles } from '@/components/AtHome/TeamRoles';
 import { OpenSourceRepos } from '@/components/AtHome/OpenSourceRepos';
 
 export const dynamicParams = false;
@@ -39,6 +40,7 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
         <RobotGallery />
         <PlatformSummary />
         <OpenSourceRepos />
+        <TeamRoles />
       </div>
     </Layout>
   );

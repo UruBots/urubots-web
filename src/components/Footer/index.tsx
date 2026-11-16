@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import logo from '../../../public/images/logo/logo.svg';
 import logo2 from '../../../public/images/logo/logo-2.svg';
+import { OFFICIAL_LEAGUE_URL } from '@/config/athome';
 
 export const Footer = ({navigation}: any) => {
     return (
@@ -191,6 +192,16 @@ export const Footer = ({navigation}: any) => {
                 </div>
                 <div className='bg-primary/10 py-8'>
                     <div className='w-full'>
+                        <p className='mb-2 text-center text-base text-body-color dark:text-white'>
+                            <a
+                                href={OFFICIAL_LEAGUE_URL}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='hover:underline'
+                            >
+                                RoboCup@Home
+                            </a>
+                        </p>
                         <p className='text-center text-base text-body-color dark:text-white'>
                             URUBOTS &#10084; &#65039;- {new Date().getFullYear()}
                         </p>
