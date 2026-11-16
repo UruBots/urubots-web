@@ -2,7 +2,7 @@ import { atHomeConfig, OFFICIAL_LEAGUE_URL, ORG_URL, REPO_URL } from '@/config/a
 import { youtubeEmbedUrl } from '@/lib/youtube';
 
 const btn =
-  'inline-block rounded bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-opacity-90 transition';
+  'inline-block rounded bg-blue-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500';
 
 export function QualificationMaterials() {
   const { tdpPdfUrl, videoUrl } = atHomeConfig;

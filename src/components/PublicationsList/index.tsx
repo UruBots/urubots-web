@@ -12,7 +12,7 @@ const labels: Record<string, { all: string; paper: string; tdp: string; copy: st
 };
 
 const linkClass =
-  'rounded border border-primary/30 px-3 py-1 text-sm text-primary hover:bg-primary hover:text-white transition-colors';
+  'rounded border border-blue-300 px-3 py-1 text-sm text-blue-800 transition-colors hover:bg-blue-800 hover:text-white dark:border-blue-700 dark:text-blue-300 dark:hover:bg-blue-600 dark:hover:text-white';
 
 function Card({ pub, t }: { pub: Publication; t: (typeof labels)['en-us'] }) {
   const [copied, setCopied] = useState(false);
@@ -30,16 +30,16 @@ function Card({ pub, t }: { pub: Publication; t: (typeof labels)['en-us'] }) {
   return (
     <li className="rounded-lg border border-gray-200 dark:border-gray-700 p-4">
       <h4 className="text-lg font-medium text-black dark:text-white leading-relaxed">{pub.title}</h4>
-      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{pub.authors.join(', ')}</p>
+      <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{pub.authors.join(', ')}</p>
       {(pub.venue || badge) && (
         <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
           {pub.venue}
           {badge && (
-            <span className="ml-2 rounded bg-primary/10 px-2 py-0.5 text-xs text-primary">{badge}</span>
+            <span className="ml-2 rounded bg-blue-100 px-2 py-0.5 text-xs text-blue-900 dark:bg-blue-900/50 dark:text-blue-200">{badge}</span>
           )}
         </p>
       )}
-      <p className="mt-2 text-sm text-body-color dark:text-body-color-dark">{pub.summary}</p>
+      <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">{pub.summary}</p>
       <div className="mt-3 flex flex-wrap gap-2">
         {pub.pdf && (
           <a href={pub.pdf} target="_blank" rel="noopener noreferrer" className={linkClass}>PDF</a>
@@ -77,7 +77,7 @@ export function PublicationsList({ lang }: { lang: string }) {
               onClick={() => setFilter(key)}
               className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                 filter === key
-                  ? 'bg-primary text-white'
+                  ? 'bg-blue-900 text-white dark:bg-blue-600'
                   : 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
               }`}
             >

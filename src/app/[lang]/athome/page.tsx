@@ -28,11 +28,12 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
 
   return (
     <Layout locales={locales} navigation={navigation}>
-      <div className="container mx-auto max-w-4xl px-4 pt-32 pb-16 bg-white dark:bg-gray-900">
+      <div className="bg-white dark:bg-gray-900">
+      <div className="container mx-auto max-w-4xl px-4 pt-32 pb-16">
         <h1 className="mb-2 text-4xl font-bold text-black dark:text-white">
           UruBots — RoboCup@Home Open Platform League 2027
         </h1>
-        <p className="text-body-color dark:text-body-color-dark">
+        <p className="text-gray-700 dark:text-gray-300">
           Team UruBots · Universidad Tecnológica del Uruguay (UTEC) — ITR Norte, Rivera, Uruguay · Target event:
           RoboCup 2027, Nuremberg, Germany, June 15–21, 2027.
         </p>
@@ -41,6 +42,7 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
         <PlatformSummary />
         <OpenSourceRepos />
         <TeamRoles />
+      </div>
       </div>
     </Layout>
   );

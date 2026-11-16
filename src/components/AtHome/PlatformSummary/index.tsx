@@ -25,7 +25,7 @@ export function PlatformSummary() {
   return (
     <section id="platform" className="py-10">
       <h2 className="mb-2 text-3xl font-bold text-black dark:text-white">Base@Home platform</h2>
-      <p className="mb-6 text-body-color dark:text-body-color-dark">
+      <p className="mb-6 text-gray-700 dark:text-gray-300">
         Base@Home is a custom low-cost domestic service robot developed by UruBots for the RoboCup@Home Open Platform
         League (OPL), at Universidad Tecnológica del Uruguay (UTEC), ITR Norte, Rivera.
       </p>
@@ -33,7 +33,7 @@ export function PlatformSummary() {
         {sections.map((s) => (
           <div key={s.title}>
             <h3 className="mb-1 text-xl font-semibold text-black dark:text-white">{s.title}</h3>
-            <p className="text-body-color dark:text-body-color-dark">{s.body}</p>
+            <p className="text-gray-700 dark:text-gray-300">{s.body}</p>
           </div>
         ))}
       </div>

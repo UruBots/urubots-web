@@ -13,14 +13,14 @@ export function TeamRoles() {
             <dt className="text-sm text-gray-500 dark:text-gray-400">{label}</dt>
             <dd className="mt-1 text-lg font-medium text-black dark:text-white">
               {person.url ? (
-                <a className="text-primary underline" href={person.url} target="_blank" rel="noopener noreferrer">
+                <a className="text-blue-700 underline dark:text-blue-400" href={person.url} target="_blank" rel="noopener noreferrer">
                   {person.name}
                 </a>
               ) : (
                 person.name
               )}
               {person.email && (
-                <a className="mt-1 block text-sm text-primary" href={`mailto:${person.email}`}>
+                <a className="mt-1 block text-sm text-blue-700 dark:text-blue-400" href={`mailto:${person.email}`}>
                   {person.email}
                 </a>
               )}
