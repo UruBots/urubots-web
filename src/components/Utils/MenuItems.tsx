@@ -40,23 +40,23 @@ const menuData = {
     },
     {
       id: 7,
+      title: '@Home',
+      path: '/en-us/athome',
+      newTab: false,
+    },
+    {
+      id: 8,
       title: 'Donate',
       path: '/en-us/donations',
       newTab: false,
     },
     {
-      id: 8,
+      id: 9,
       title: 'Contact',
       path: '/en-us/contact',
       newTab: false,
     },
-    {
-      id: 9,
-      title: '@Home',
-      path: '/en-us/athome',
-      newTab: false,
-    },
-  ],
+],
   'es-ar': [
     {
       id: 1,
@@ -96,23 +96,23 @@ const menuData = {
     },
     {
       id: 7,
+      title: '@Home',
+      path: '/es-ar/athome',
+      newTab: false,
+    },
+    {
+      id: 8,
       title: 'Donar',
       path: '/es-ar/donations',
       newTab: false,
     },
     {
-      id: 8,
+      id: 9,
       title: 'Contacto',
       path: '/es-ar/contact',
       newTab: false,
     },
-    {
-      id: 9,
-      title: '@Home',
-      path: '/es-ar/athome',
-      newTab: false,
-    },
-  ],
+],
   'pt-br': [
     {
       id: 1,
@@ -152,23 +152,23 @@ const menuData = {
     },
     {
       id: 7,
+      title: '@Home',
+      path: '/pt-br/athome',
+      newTab: false,
+    },
+    {
+      id: 8,
       title: 'Doar',
       path: '/pt-br/donations',
       newTab: false,
     },
     {
-      id: 8,
+      id: 9,
       title: 'Contato',
       path: '/pt-br/contact',
       newTab: false,
     },
-    {
-      id: 9,
-      title: '@Home',
-      path: '/pt-br/athome',
-      newTab: false,
-    },
-  ],
+],
 };
 
 export const getMenuItems = (lang: string) => {
